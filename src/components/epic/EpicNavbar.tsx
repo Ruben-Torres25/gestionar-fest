@@ -14,13 +14,14 @@ export function EpicNavbar({ onOpenMenu }: { onOpenMenu: () => void }) {
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.75, duration: 0.7, ease: "easeOut" }}
-        className="relative h-12 w-[9.5rem] shrink-0 overflow-hidden"
+        className="relative h-14 w-[6.7rem] shrink-0 overflow-hidden"
       >
         <img
           src={EPIC_LOGO}
           alt="Epic Fest"
-          className="absolute left-1/2 top-1/2 h-[9.5rem] w-[9.5rem] -translate-x-1/2 -translate-y-1/2 object-contain"
+          className="absolute left-1/2 top-1/2 h-[7.5rem] w-[7.5rem] -translate-x-1/2 object-contain"
           style={{
+            transform: "translate(-50%, calc(-50% - 5px))",
             filter:
               "drop-shadow(0 0 12px color-mix(in oklab, var(--epic-violet) 45%, transparent))",
           }}
