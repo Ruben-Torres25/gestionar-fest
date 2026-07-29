@@ -10,15 +10,22 @@ export function EpicNavbar({ onOpenMenu }: { onOpenMenu: () => void }) {
       transition={{ delay: 0.5, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       className="pointer-events-auto relative z-30 flex items-center justify-between gap-4 rounded-2xl border border-epic-violet/25 bg-epic-night/55 px-4 py-2.5 backdrop-blur-md"
     >
-      <motion.img
-        src={EPIC_LOGO}
-        alt="Epic Fest"
+      <motion.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.75, duration: 0.7, ease: "easeOut" }}
-        className="h-11 w-auto max-w-[52%] object-contain"
-        style={{ filter: "drop-shadow(0 0 10px color-mix(in oklab, var(--epic-violet) 45%, transparent))" }}
-      />
+        className="relative h-12 w-[9.5rem] shrink-0 overflow-hidden"
+      >
+        <img
+          src={EPIC_LOGO}
+          alt="Epic Fest"
+          className="absolute left-1/2 top-1/2 h-[9.5rem] w-[9.5rem] -translate-x-1/2 -translate-y-1/2 object-contain"
+          style={{
+            filter:
+              "drop-shadow(0 0 12px color-mix(in oklab, var(--epic-violet) 45%, transparent))",
+          }}
+        />
+      </motion.div>
       <button
         type="button"
         onClick={onOpenMenu}
