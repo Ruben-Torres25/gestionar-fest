@@ -19,6 +19,13 @@
  */
 
 @theme inline {
+  --font-display: "Anton", system-ui, sans-serif;
+  --font-sans: "Oswald", system-ui, sans-serif;
+  --color-epic-violet: var(--epic-violet);
+  --color-epic-violet-bright: var(--epic-violet-bright);
+  --color-epic-violet-deep: var(--epic-violet-deep);
+  --color-epic-gold: var(--epic-gold);
+  --color-epic-night: var(--epic-night);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -63,6 +70,11 @@
 
 :root {
   --radius: 0.625rem;
+  --epic-violet: oklch(0.58 0.24 295);
+  --epic-violet-bright: oklch(0.7 0.22 300);
+  --epic-violet-deep: oklch(0.34 0.18 292);
+  --epic-gold: oklch(0.84 0.13 85);
+  --epic-night: oklch(0.09 0.03 285);
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
