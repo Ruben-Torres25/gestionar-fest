@@ -48,7 +48,7 @@ export function EpicCountdown() {
 
   return (
     <div
-      className="flex items-start justify-center gap-1 tabular-nums xs:gap-2"
+      className="flex items-start justify-center gap-1 tabular-nums"
       role="timer"
       aria-label="Cuenta regresiva para Epic Fest"
     >
