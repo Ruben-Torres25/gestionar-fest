@@ -27,10 +27,13 @@ const LABELS: Array<[keyof Parts, string]> = [
 ];
 
 const DIGIT_GLOW =
-  "0 0 8px rgba(168,85,247,0.95), 0 0 22px rgba(139,92,246,0.75), 0 0 42px rgba(124,58,237,0.45)";
+  "0 0 6px rgba(168,85,247,0.55), 0 0 14px rgba(139,92,246,0.4)";
 
 const DIGIT_FILL =
-  "linear-gradient(180deg, #ffffff 0%, #f3e8ff 45%, #d8b4fe 100%)";
+  "linear-gradient(180deg, #ffffff 0%, #f5f0ff 48%, #e9d5ff 100%)";
+
+const DIGIT_FILTER =
+  "drop-shadow(0 0 4px rgba(168,85,247,0.65)) drop-shadow(0 0 12px rgba(124,58,237,0.35))";
 
 export function EpicCountdown() {
   const target = new Date(EVENT_DATE).getTime();
@@ -65,10 +68,10 @@ export function EpicCountdown() {
               <AnimatePresence initial={false} mode="popLayout">
                 <motion.span
                   key={state.parts[key]}
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.28, ease: "easeOut" }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
                   className="block font-display text-[3.05rem] leading-none tracking-tight sm:text-[3.45rem]"
                   style={{
                     backgroundImage: DIGIT_FILL,
@@ -76,15 +79,14 @@ export function EpicCountdown() {
                     backgroundClip: "text",
                     color: "transparent",
                     WebkitTextFillColor: "transparent",
-                    filter:
-                      "drop-shadow(0 0 6px rgba(168,85,247,0.95)) drop-shadow(0 0 18px rgba(139,92,246,0.7)) drop-shadow(0 0 32px rgba(124,58,237,0.4))",
+                    filter: DIGIT_FILTER,
                   }}
                 >
                   {state.parts[key]}
                 </motion.span>
               </AnimatePresence>
             </div>
-            <span className="mt-1.5 text-[0.58rem] font-medium uppercase tracking-[0.32em] text-white/50">
+            <span className="mt-1.5 text-[0.6rem] font-medium uppercase tracking-[0.3em] text-white/62">
               {label}
             </span>
           </div>
@@ -99,7 +101,7 @@ export function EpicCountdown() {
                 color: "transparent",
                 WebkitTextFillColor: "transparent",
                 filter:
-                  "drop-shadow(0 0 6px rgba(168,85,247,0.95)) drop-shadow(0 0 16px rgba(139,92,246,0.65))",
+                  "drop-shadow(0 0 4px rgba(168,85,247,0.55)) drop-shadow(0 0 10px rgba(124,58,237,0.3))",
               }}
               aria-hidden
             >

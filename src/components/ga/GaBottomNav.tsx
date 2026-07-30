@@ -74,7 +74,7 @@ export function GaBottomNav({ active = "destacados", className }: GaBottomNavPro
   return (
     <nav
       className={cn(
-        "flex items-center justify-between gap-1 rounded-full border border-white/[0.05] bg-[#12151c]/95 px-2 py-2 backdrop-blur-md",
+        "flex items-center justify-between gap-1 rounded-full border border-white/[0.05] bg-[#12151c]/95 px-2 py-1.5 backdrop-blur-md",
         className,
       )}
       style={{ boxShadow: "0 10px 32px rgba(0,0,0,0.55)" }}
@@ -84,14 +84,14 @@ export function GaBottomNav({ active = "destacados", className }: GaBottomNavPro
         type="button"
         onClick={() => void navigate({ to: "/fiestas" })}
         className={cn(
-          "inline-flex h-12 flex-[1.45] cursor-pointer items-center justify-center rounded-full transition-transform duration-200 active:scale-[0.98]",
+          "inline-flex h-11 flex-[1.45] cursor-pointer items-center justify-center rounded-full transition-transform duration-200 active:scale-[0.98]",
           active === "destacados" && "ga-nav-active",
         )}
         aria-current={active === "destacados" ? "page" : undefined}
       >
         <span className="ga-nav-active__inner inline-flex h-full w-full items-center justify-center gap-1 rounded-full px-3.5">
           <IconSparkles className="size-5 text-[#3b9dff]" />
-          <span className="font-ga text-[14px] font-medium text-[#50df74]">Destacados</span>
+          <span className="font-ga text-[14px] font-medium text-[#50df74]">Eventos</span>
         </span>
       </button>
 
@@ -104,7 +104,7 @@ export function GaBottomNav({ active = "destacados", className }: GaBottomNavPro
           });
         }}
         className={cn(
-          "inline-flex h-12 flex-1 cursor-pointer flex-col items-center justify-center gap-0 transition-opacity duration-200 hover:opacity-80 active:scale-95",
+          "inline-flex h-11 flex-1 cursor-pointer flex-col items-center justify-center gap-0 transition-opacity duration-200 hover:opacity-80 active:scale-95",
           active === "entradas" ? "text-[#50df74]" : "text-white/40",
         )}
         aria-current={active === "entradas" ? "page" : undefined}
@@ -123,7 +123,7 @@ export function GaBottomNav({ active = "destacados", className }: GaBottomNavPro
       <button
         type="button"
         onClick={() => onSoon("Agenda")}
-        className="inline-flex h-12 flex-1 cursor-pointer flex-col items-center justify-center gap-0 text-white/40 transition-opacity duration-200 hover:opacity-80 active:scale-95"
+        className="inline-flex h-11 flex-1 cursor-pointer flex-col items-center justify-center gap-0 text-white/40 transition-opacity duration-200 hover:opacity-80 active:scale-95"
       >
         <IconCalendar className="size-[22px]" />
         <span className="font-ga -mt-0.5 text-[11px] font-medium leading-none text-[#9aa0a8]">

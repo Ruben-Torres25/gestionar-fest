@@ -36,14 +36,14 @@ export function EpicLanding() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.95, duration: 0.7, ease: "easeOut" }}
-            className="mt-7"
+            className="mt-6"
           >
             <EpicCountdown />
           </motion.div>
 
-          <div className="mt-8">
+          <div className="mt-7">
             <EpicHeroContent />
-            <div className="pointer-events-auto mt-5 flex justify-start">
+            <div className="pointer-events-auto mt-[14px] flex justify-start sm:mt-4">
               <EpicCTA />
             </div>
           </div>

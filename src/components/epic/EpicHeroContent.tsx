@@ -13,7 +13,7 @@ export function EpicHeroContent() {
       >
         Epic Fest · Próximamente
       </motion.p>
-      <h1 className="font-display text-[2.7rem] uppercase leading-[0.92] text-white sm:text-5xl">
+      <h1 className="font-display text-[2.55rem] uppercase leading-[0.92] text-white sm:text-[2.85rem]">
         {LINES.map((line, i) => (
           <span key={line} className="block overflow-hidden">
             <motion.span
