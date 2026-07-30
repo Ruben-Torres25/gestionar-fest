@@ -132,11 +132,13 @@ function TicketOption({
   selected,
   onSelect,
   reduceMotion,
+  index,
 }: {
   tier: MockTicketTier;
   selected: boolean;
   onSelect: () => void;
   reduceMotion: boolean | null;
+  index: number;
 }) {
   const accent = TIER_ACCENT[tier.id] ?? TIER_ACCENT.general;
 
@@ -147,14 +149,20 @@ function TicketOption({
       aria-checked={selected}
       aria-label={`${tier.name}, ${tier.priceLabel}. ${tier.description}`}
       onClick={onSelect}
-      whileTap={{ scale: 0.985 }}
+      initial={{ opacity: 0, y: 10 }}
       animate={{
-        scale: selected ? 1.01 : 1,
+        opacity: 1,
         y: selected ? -1 : 0,
+        scale: selected ? 1.01 : 1,
       }}
-      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+      transition={{
+        opacity: { delay: 0.08 + index * 0.06, duration: 0.35 },
+        y: { duration: 0.25, ease: [0.22, 1, 0.36, 1] },
+        scale: { duration: 0.25, ease: [0.22, 1, 0.36, 1] },
+      }}
+      whileTap={{ scale: 0.985 }}
       className={cn(
-        "relative flex w-full cursor-pointer items-center gap-3 overflow-hidden rounded-xl border px-3.5 py-3.5 text-left outline-none",
+        "relative flex min-h-[76px] w-full cursor-pointer items-center gap-3.5 overflow-hidden rounded-xl border px-3.5 py-3.5 text-left outline-none",
         "focus-visible:ring-2 focus-visible:ring-[#e879f9]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#05040a]",
         selected ? "" : "bg-[#100e1a] hover:border-white/20",
       )}
@@ -177,13 +185,13 @@ function TicketOption({
           aria-hidden
           className="pointer-events-none absolute -inset-2 -z-10 rounded-2xl"
           animate={
-            reduceMotion ? { opacity: 0.7 } : { opacity: [0.5, 0.8, 0.5] }
+            reduceMotion ? { opacity: 0.65 } : { opacity: [0.45, 0.72, 0.45] }
           }
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           style={{
             background:
               tier.id === "supervip"
-                ? "radial-gradient(circle, rgba(250,204,21,0.22) 0%, rgba(168,85,247,0.16) 50%, transparent 72%)"
+                ? "radial-gradient(circle, rgba(250,204,21,0.2) 0%, rgba(168,85,247,0.14) 50%, transparent 72%)"
                 : `radial-gradient(circle, ${accent.ring} 0%, transparent 68%)`,
             filter: "blur(12px)",
           }}
@@ -203,17 +211,17 @@ function TicketOption({
         <TierIcon icon={tier.icon} stroke={accent.stroke} />
       </span>
 
-      <span className="min-w-0 flex-1">
+      <span className="min-w-0 flex-1 pr-1">
         <span className="block text-[15px] font-semibold tracking-tight text-white">
           {tier.name}
         </span>
-        <span className="mt-1 block text-[12.5px] leading-snug text-white/68">
+        <span className="mt-1 block text-[12.5px] leading-[1.35] text-white/70">
           {tier.description}
         </span>
       </span>
 
-      <span className="flex shrink-0 flex-col items-end gap-2">
-        <span className="text-[14.5px] font-semibold tabular-nums text-white">
+      <span className="flex w-[5.75rem] shrink-0 flex-col items-end justify-center gap-2">
+        <span className="text-[15px] font-semibold tabular-nums tracking-tight text-white">
           {tier.priceLabel}
         </span>
         <span
@@ -311,42 +319,48 @@ export function EpicTicketSelector() {
           </div>
         </header>
 
-        <div className="relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden px-4 pb-2 pt-3.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="relative z-10 flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-contain px-4 pb-2 pt-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <section
-            className="flex shrink-0 items-center gap-3 rounded-xl border p-3"
+            className="relative flex shrink-0 items-center gap-3.5 overflow-hidden rounded-xl border px-3.5 py-3.5"
             style={{
-              borderColor: "rgba(192, 132, 252, 0.45)",
-              background: "linear-gradient(120deg, #1a1230 0%, #120c22 100%)",
+              borderColor: "rgba(192, 132, 252, 0.42)",
+              background: "linear-gradient(125deg, #1b1332 0%, #120c22 100%)",
               boxShadow:
-                "0 0 22px rgba(168,85,247,0.22), inset 0 1px 0 rgba(232,121,249,0.18)",
+                "0 0 20px rgba(168,85,247,0.2), inset 0 1px 0 rgba(232,121,249,0.16)",
             }}
             aria-label="Resumen del evento"
           >
             <div
-              className="size-[68px] shrink-0 overflow-hidden rounded-xl bg-[#1a1528]"
+              className="size-[74px] shrink-0 overflow-hidden rounded-[12px] bg-[#1a1528]"
               style={{
                 boxShadow:
-                  "0 0 0 1px rgba(232,121,249,0.5), 0 0 20px rgba(168,85,247,0.4)",
+                  "0 0 0 1px rgba(232,121,249,0.48), 0 0 16px rgba(168,85,247,0.32)",
               }}
             >
               <img
                 src={MOCK_EVENT_SUMMARY.imageUrl}
                 alt=""
-                className="h-full w-full object-cover object-center"
+                className="h-full w-full object-cover"
+                style={{ objectPosition: "48% 32%" }}
                 draggable={false}
               />
             </div>
-            <div className="min-w-0">
-              <p className="text-[14.5px] font-bold uppercase tracking-[0.04em] text-white">
+            <div className="min-w-0 flex-1 py-0.5">
+              <p className="text-[15.5px] font-bold uppercase tracking-[0.05em] text-white">
                 {MOCK_EVENT_SUMMARY.name}
               </p>
-              <p className="mt-1.5 flex items-center gap-1.5 text-[12px] text-white/72">
-                <MapPin className="size-3.5 shrink-0 text-[#e879f9]" aria-hidden />
+              <p className="mt-[9px] flex items-center gap-2 text-[12.5px] text-white/70">
+                <MapPin
+                  className="size-3.5 shrink-0 text-[#e879f9]"
+                  strokeWidth={1.75}
+                  aria-hidden
+                />
                 <span className="truncate">{MOCK_EVENT_SUMMARY.venue}</span>
               </p>
-              <p className="mt-1 flex items-center gap-1.5 text-[12px] text-white/72">
+              <p className="mt-[7px] flex items-center gap-2 text-[12.5px] tabular-nums text-white/82">
                 <CalendarDays
                   className="size-3.5 shrink-0 text-[#e879f9]"
+                  strokeWidth={1.75}
                   aria-hidden
                 />
                 <span className="truncate">{MOCK_EVENT_SUMMARY.dateLabel}</span>
@@ -354,24 +368,22 @@ export function EpicTicketSelector() {
             </div>
           </section>
 
-          <div className="mt-5 shrink-0">
-            <h2 className="text-[1.3rem] font-semibold tracking-tight text-white">
-              Seleccioná tu entrada
+          <div className="mt-3.5 shrink-0">
+            <h2 className="text-[1.35rem] font-semibold tracking-tight text-white">
+              Selecciona tu entrada
             </h2>
-            <p className="mt-1.5 text-[13px] leading-snug text-white/68">
-              Elegí el tipo de entrada que más te convenga
-            </p>
           </div>
 
           <div
             role="radiogroup"
             aria-label="Tipo de entrada"
-            className="mt-4 flex shrink-0 flex-col gap-3"
+            className="mt-2.5 flex shrink-0 flex-col gap-3"
           >
-            {MOCK_TICKET_TIERS.map((tier) => (
+            {MOCK_TICKET_TIERS.map((tier, index) => (
               <TicketOption
                 key={tier.id}
                 tier={tier}
+                index={index}
                 selected={selectedId === tier.id}
                 onSelect={() => setSelectedId(tier.id)}
                 reduceMotion={reduceMotion}
@@ -379,25 +391,25 @@ export function EpicTicketSelector() {
             ))}
           </div>
 
-          <div className="mt-auto flex shrink-0 flex-col gap-3 pt-5">
+          <div className="mt-auto flex shrink-0 flex-col gap-2.5 pt-4">
             <div
-              className="flex items-center gap-3 rounded-2xl border px-4 py-3"
+              className="flex items-center gap-2.5 rounded-xl border px-3.5 py-2.5"
               style={{
-                borderColor: "rgba(192, 132, 252, 0.32)",
+                borderColor: "rgba(192, 132, 252, 0.28)",
                 background: "linear-gradient(90deg, #18122c 0%, #120e20 100%)",
-                boxShadow: "0 0 14px rgba(168,85,247,0.12)",
+                boxShadow: "0 0 12px rgba(168,85,247,0.1)",
               }}
             >
               <ShieldCheck
-                className="size-5 shrink-0 text-[#e879f9]"
-                strokeWidth={1.7}
+                className="size-[18px] shrink-0 text-[#e879f9]"
+                strokeWidth={1.8}
                 aria-hidden
               />
               <div className="min-w-0 leading-tight">
                 <p className="text-[13px] font-semibold text-white">
                   Compra 100% segura
                 </p>
-                <p className="mt-0.5 text-[12px] font-normal text-white/65">
+                <p className="mt-0.5 text-[12px] font-normal text-white/68">
                   Tus datos están protegidos en todo momento.
                 </p>
               </div>
@@ -409,7 +421,7 @@ export function EpicTicketSelector() {
               onClick={handleContinue}
               whileTap={canContinue ? { scale: 0.98 } : undefined}
               className={cn(
-                "relative flex h-[52px] w-full items-center justify-center overflow-hidden rounded-lg text-[15px] font-semibold tracking-wide text-white transition-[box-shadow,filter] duration-300",
+                "group relative flex min-h-[52px] w-full items-center justify-center overflow-hidden rounded-xl text-[15px] font-semibold tracking-wide text-white transition-[box-shadow,filter] duration-300",
                 canContinue ? "cursor-pointer" : "cursor-not-allowed",
               )}
               style={
@@ -418,7 +430,7 @@ export function EpicTicketSelector() {
                       background:
                         "linear-gradient(90deg, #38bdf8 0%, #7c3aed 45%, #e879f9 100%)",
                       boxShadow:
-                        "0 0 32px -2px rgba(192,38,211,0.6), 0 0 20px rgba(56,189,248,0.25), 0 8px 18px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.32)",
+                        "0 0 30px -2px rgba(192,38,211,0.55), 0 0 18px rgba(56,189,248,0.22), 0 8px 18px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.3)",
                     }
                   : {
                       background:
@@ -454,7 +466,7 @@ export function EpicTicketSelector() {
               </AnimatePresence>
               {canContinue ? (
                 <ArrowRight
-                  className="absolute right-5 size-4"
+                  className="absolute right-5 size-4 transition-transform duration-300 group-active:translate-x-0.5"
                   strokeWidth={2.25}
                   aria-hidden
                 />
@@ -464,11 +476,11 @@ export function EpicTicketSelector() {
         </div>
 
         <div
-          className="relative z-20 shrink-0 px-3.5 pt-1"
+          className="relative z-20 shrink-0 border-t border-white/[0.04] px-3.5 pt-2"
           style={{
-            paddingBottom: "calc(env(safe-area-inset-bottom) + 0.65rem)",
+            paddingBottom: "calc(env(safe-area-inset-bottom) + 0.55rem)",
             background:
-              "linear-gradient(to top, rgba(5,4,10,0.95) 55%, transparent)",
+              "linear-gradient(to top, rgba(5,4,10,0.98) 60%, rgba(5,4,10,0.7))",
           }}
         >
           <GaBottomNav active="entradas" />

@@ -125,9 +125,9 @@ export function EpicTicketPass() {
 
         <header
           className="relative z-20 shrink-0 px-5 sm:px-6"
-          style={{ paddingTop: "calc(env(safe-area-inset-top) + 0.35rem)" }}
+          style={{ paddingTop: "env(safe-area-inset-top)" }}
         >
-          <div className="grid grid-cols-[2.5rem_1fr_2.5rem] items-center">
+          <div className="grid h-14 grid-cols-[2.5rem_1fr_2.5rem] items-center">
             <button
               type="button"
               aria-label="Volver"
@@ -137,8 +137,8 @@ export function EpicTicketPass() {
               <ArrowLeft className="size-[1.15rem]" strokeWidth={1.7} />
             </button>
 
-            <div className="flex flex-col items-center">
-              <h1 className="text-center text-[1.35rem] font-semibold leading-tight tracking-tight text-white sm:text-[1.45rem]">
+            <div className="flex flex-col items-center justify-center">
+              <h1 className="text-center text-[1.35rem] font-semibold leading-none tracking-tight text-white sm:text-[1.45rem]">
                 Entrada Epic Fest
               </h1>
             </div>
@@ -148,7 +148,7 @@ export function EpicTicketPass() {
 
           <div
             aria-hidden
-            className="mt-3 h-px w-full"
+            className="h-px w-full"
             style={{
               background:
                 "linear-gradient(90deg, transparent, rgba(168,85,247,0.35) 18%, rgba(255,255,255,0.14) 50%, rgba(168,85,247,0.35) 82%, transparent)",
@@ -157,10 +157,10 @@ export function EpicTicketPass() {
         </header>
 
         <div
-          className="relative z-10 flex min-h-0 flex-1 flex-col justify-start overflow-hidden px-5 sm:px-6"
+          className="relative z-10 flex min-h-0 flex-1 flex-col justify-center overflow-hidden px-5 sm:px-6"
           style={{
-            paddingTop: "0.75rem",
-            paddingBottom: "0.75rem",
+            paddingTop: "0.5rem",
+            paddingBottom: "0.5rem",
           }}
         >
           <div className="flex flex-col items-center">

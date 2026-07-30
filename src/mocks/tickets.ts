@@ -9,8 +9,8 @@ export type MockTicketTier = {
 
 export const MOCK_EVENT_SUMMARY = {
   name: "EPIC FEST",
-  venue: "Salón Aurora - Olavarría",
-  dateLabel: "sáb, 1 ago 2026 - 23:30 hs",
+  venue: "Salón Aurora · Olavarría",
+  dateLabel: "Sáb, 1 ago 2026 · 23:30 hs",
   /** Bear thumb matching the purchase mock (logo.png is wordmark-only). */
   imageUrl: "/ga/party-epic-fest.png",
 } as const;

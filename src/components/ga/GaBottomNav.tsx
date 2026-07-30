@@ -74,10 +74,10 @@ export function GaBottomNav({ active = "destacados", className }: GaBottomNavPro
   return (
     <nav
       className={cn(
-        "flex items-center justify-between gap-1 rounded-full border border-white/[0.05] bg-[#12151c]/95 px-2 py-1.5 backdrop-blur-md",
+        "flex items-center justify-between gap-1 rounded-full border border-white/[0.07] bg-[#10141c]/96 px-2 py-1.5 backdrop-blur-md",
         className,
       )}
-      style={{ boxShadow: "0 10px 32px rgba(0,0,0,0.55)" }}
+      style={{ boxShadow: "0 8px 28px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04)" }}
       aria-label="Navegación principal"
     >
       <button
@@ -105,7 +105,7 @@ export function GaBottomNav({ active = "destacados", className }: GaBottomNavPro
         }}
         className={cn(
           "inline-flex h-11 flex-1 cursor-pointer flex-col items-center justify-center gap-0 transition-opacity duration-200 hover:opacity-80 active:scale-95",
-          active === "entradas" ? "text-[#50df74]" : "text-white/40",
+          active === "entradas" ? "text-[#50df74]" : "text-white/50",
         )}
         aria-current={active === "entradas" ? "page" : undefined}
       >
@@ -113,7 +113,7 @@ export function GaBottomNav({ active = "destacados", className }: GaBottomNavPro
         <span
           className={cn(
             "font-ga -mt-0.5 text-[11px] font-medium leading-none",
-            active === "entradas" ? "text-[#50df74]" : "text-[#9aa0a8]",
+            active === "entradas" ? "text-[#50df74]" : "text-[#b0b6be]",
           )}
         >
           Mis entradas
@@ -123,10 +123,10 @@ export function GaBottomNav({ active = "destacados", className }: GaBottomNavPro
       <button
         type="button"
         onClick={() => onSoon("Agenda")}
-        className="inline-flex h-11 flex-1 cursor-pointer flex-col items-center justify-center gap-0 text-white/40 transition-opacity duration-200 hover:opacity-80 active:scale-95"
+        className="inline-flex h-11 flex-1 cursor-pointer flex-col items-center justify-center gap-0 text-white/50 transition-opacity duration-200 hover:opacity-80 active:scale-95"
       >
         <IconCalendar className="size-[22px]" />
-        <span className="font-ga -mt-0.5 text-[11px] font-medium leading-none text-[#9aa0a8]">
+        <span className="font-ga -mt-0.5 text-[11px] font-medium leading-none text-[#b0b6be]">
           Agenda
         </span>
       </button>
