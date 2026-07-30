@@ -26,6 +26,10 @@
   --color-epic-violet-deep: var(--epic-violet-deep);
   --color-epic-gold: var(--epic-gold);
   --color-epic-night: var(--epic-night);
+  --color-social-blue: var(--social-blue);
+  --color-social-pink: var(--social-pink);
+  --color-social-gold: var(--social-gold);
+  --color-gestionar-green: var(--gestionar-green);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -75,6 +79,10 @@
   --epic-violet-deep: oklch(0.34 0.18 292);
   --epic-gold: oklch(0.84 0.13 85);
   --epic-night: oklch(0.09 0.03 285);
+  --social-blue: oklch(0.66 0.19 250);
+  --social-pink: oklch(0.7 0.19 340);
+  --social-gold: oklch(0.87 0.15 92);
+  --gestionar-green: oklch(0.66 0.13 150);
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);

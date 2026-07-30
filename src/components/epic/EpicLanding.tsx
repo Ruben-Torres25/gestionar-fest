@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
+import { Link } from "@tanstack/react-router";
 import { EpicScene } from "./EpicScene";
 import { EpicAmbientEffects } from "./EpicAmbientEffects";
 import { EpicNavbar } from "./EpicNavbar";
@@ -47,6 +48,15 @@ export function EpicLanding() {
 
           <div className="pointer-events-auto mt-auto flex justify-center">
             <EpicCTA />
+          </div>
+
+          <div className="pointer-events-auto mt-3 flex justify-center">
+            <Link
+              to="/social"
+              className="text-[0.6rem] uppercase tracking-[0.24em] text-white/35 underline-offset-4 hover:text-white/60"
+            >
+              Ver GestionAR Social
+            </Link>
           </div>
         </div>
 

@@ -28,9 +28,13 @@ const LABELS: Array<[keyof Parts, string]> = [
 
 export function EpicCountdown() {
   const target = new Date(EVENT_DATE).getTime();
-  const [state, setState] = useState(() => getParts(target));
+  const [state, setState] = useState<{ parts: Parts; done: boolean }>({
+    done: false,
+    parts: { days: "--", hours: "--", minutes: "--", seconds: "--" },
+  });
 
   useEffect(() => {
+    setState(getParts(target));
     const id = window.setInterval(() => setState(getParts(target)), 1000);
     return () => window.clearInterval(id);
   }, [target]);
