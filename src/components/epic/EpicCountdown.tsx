@@ -26,6 +26,12 @@ const LABELS: Array<[keyof Parts, string]> = [
   ["seconds", "Seg"],
 ];
 
+const DIGIT_GLOW =
+  "0 0 8px rgba(168,85,247,0.95), 0 0 22px rgba(139,92,246,0.75), 0 0 42px rgba(124,58,237,0.45)";
+
+const DIGIT_FILL =
+  "linear-gradient(180deg, #ffffff 0%, #f3e8ff 45%, #d8b4fe 100%)";
+
 export function EpicCountdown() {
   const target = new Date(EVENT_DATE).getTime();
   const [state, setState] = useState(() => getParts(target));
@@ -39,7 +45,7 @@ export function EpicCountdown() {
     return (
       <p
         className="font-display text-3xl uppercase tracking-[0.12em] text-white"
-        style={{ textShadow: "0 0 22px color-mix(in oklab, var(--epic-violet) 70%, transparent)" }}
+        style={{ textShadow: DIGIT_GLOW }}
       >
         Epic Fest comenzó
       </p>
@@ -48,40 +54,58 @@ export function EpicCountdown() {
 
   return (
     <div
-      className="flex items-start justify-center gap-1 tabular-nums"
+      className="flex items-start justify-center gap-1.5 tabular-nums sm:gap-2"
       role="timer"
       aria-label="Cuenta regresiva para Epic Fest"
     >
       {LABELS.map(([key, label], i) => (
-        <div key={key} className="flex items-start">
-          <div className="flex w-[3.6rem] flex-col items-center sm:w-16">
-            <div className="relative h-[3.1rem] overflow-hidden sm:h-14">
+        <div key={key} className="flex items-start gap-1.5 sm:gap-2">
+          <div className="flex min-w-[3.4rem] flex-col items-center sm:min-w-[3.8rem]">
+            <div className="relative flex h-[3.15rem] items-center justify-center overflow-visible sm:h-[3.5rem]">
               <AnimatePresence initial={false} mode="popLayout">
                 <motion.span
                   key={state.parts[key]}
-                  initial={{ opacity: 0, y: 8 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
+                  exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.28, ease: "easeOut" }}
-                  className="block font-display text-[3rem] leading-[3.1rem] text-white sm:text-[3.4rem] sm:leading-[3.5rem]"
+                  className="block font-display text-[3.05rem] leading-none tracking-tight sm:text-[3.45rem]"
                   style={{
-                    textShadow:
-                      "0 0 18px color-mix(in oklab, var(--epic-violet) 55%, transparent), 0 2px 12px rgba(0,0,0,0.6)",
+                    backgroundImage: DIGIT_FILL,
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                    WebkitTextFillColor: "transparent",
+                    filter:
+                      "drop-shadow(0 0 6px rgba(168,85,247,0.95)) drop-shadow(0 0 18px rgba(139,92,246,0.7)) drop-shadow(0 0 32px rgba(124,58,237,0.4))",
                   }}
                 >
                   {state.parts[key]}
                 </motion.span>
               </AnimatePresence>
             </div>
-            <span className="mt-1 text-[0.6rem] uppercase tracking-[0.28em] text-white/55">
+            <span className="mt-1.5 text-[0.58rem] font-medium uppercase tracking-[0.32em] text-white/50">
               {label}
             </span>
           </div>
-          {i < LABELS.length - 1 && (
-            <span className="font-display text-[2.4rem] leading-[3.1rem] text-epic-violet-bright/70 sm:text-[2.7rem] sm:leading-[3.5rem]">
+
+          {i < LABELS.length - 1 ? (
+            <span
+              className="font-display pt-0.5 text-[2.35rem] leading-[3.15rem] sm:text-[2.7rem] sm:leading-[3.5rem]"
+              style={{
+                backgroundImage: DIGIT_FILL,
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                color: "transparent",
+                WebkitTextFillColor: "transparent",
+                filter:
+                  "drop-shadow(0 0 6px rgba(168,85,247,0.95)) drop-shadow(0 0 16px rgba(139,92,246,0.65))",
+              }}
+              aria-hidden
+            >
               :
             </span>
-          )}
+          ) : null}
         </div>
       ))}
     </div>

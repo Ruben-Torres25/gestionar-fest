@@ -1,9 +1,15 @@
 import { useEffect } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
 import { X } from "lucide-react";
+import { toast } from "sonner";
+
 import { MENU_ITEMS } from "@/lib/epic";
+import { getSession } from "@/lib/ga-session";
 
 export function EpicMobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -17,6 +23,20 @@ export function EpicMobileMenu({ open, onClose }: { open: boolean; onClose: () =
       document.body.style.overflow = prev;
     };
   }, [open, onClose]);
+
+  function handleItem(item: (typeof MENU_ITEMS)[number]) {
+    onClose();
+    if (item === "Inicio") {
+      void navigate({ to: "/epic" });
+      return;
+    }
+    if (item === "Entradas") {
+      const session = getSession();
+      void navigate({ to: session.ticketTierId ? "/mi-entrada" : "/entradas" });
+      return;
+    }
+    toast(`${item} próximamente`);
+  }
 
   return (
     <AnimatePresence>
@@ -54,12 +74,12 @@ export function EpicMobileMenu({ open, onClose }: { open: boolean; onClose: () =
               <motion.button
                 key={item}
                 type="button"
-                onClick={onClose}
+                onClick={() => handleItem(item)}
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.08 * i + 0.1, duration: 0.45, ease: "easeOut" }}
                 whileTap={{ scale: 0.97, color: "var(--epic-violet-bright)" }}
-                className="text-left font-display text-4xl uppercase tracking-wide text-white/90"
+                className="cursor-pointer text-left font-display text-4xl uppercase tracking-wide text-white/90"
               >
                 {item}
               </motion.button>

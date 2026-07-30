@@ -7,6 +7,7 @@ import { EpicMobileMenu } from "./EpicMobileMenu";
 import { EpicCountdown } from "./EpicCountdown";
 import { EpicHeroContent } from "./EpicHeroContent";
 import { EpicCTA } from "./EpicCTA";
+import { GaBottomNav } from "@/components/ga/GaBottomNav";
 
 export function EpicLanding() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -27,7 +28,6 @@ export function EpicLanding() {
           className="pointer-events-none relative z-20 flex h-full flex-col px-5"
           style={{
             paddingTop: "calc(env(safe-area-inset-top) + 0.75rem)",
-            paddingBottom: "calc(env(safe-area-inset-bottom) + 1.25rem)",
           }}
         >
           <EpicNavbar onOpenMenu={() => setMenuOpen(true)} />
@@ -43,10 +43,18 @@ export function EpicLanding() {
 
           <div className="mt-8">
             <EpicHeroContent />
+            <div className="pointer-events-auto mt-5 flex justify-start">
+              <EpicCTA />
+            </div>
           </div>
 
-          <div className="pointer-events-auto mt-auto flex justify-center">
-            <EpicCTA />
+          <div className="mt-auto" aria-hidden />
+
+          <div
+            className="pointer-events-auto relative z-20 shrink-0 -mx-1.5"
+            style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 0.65rem)" }}
+          >
+            <GaBottomNav active="destacados" />
           </div>
         </div>
 
