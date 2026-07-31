@@ -185,22 +185,33 @@
   }
 
   html {
-    background-color: #040208;
     color-scheme: dark;
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
-    overscroll-behavior-x: none;
+    overscroll-behavior: none;
+    background-color: #050310;
+    background-image:
+      radial-gradient(120% 60% at 20% 0%, color-mix(in oklab, var(--epic-violet) 28%, transparent), transparent 60%),
+      radial-gradient(90% 50% at 90% 18%, color-mix(in oklab, var(--social-blue) 20%, transparent), transparent 65%),
+      radial-gradient(100% 60% at 50% 100%, color-mix(in oklab, var(--epic-violet-deep) 45%, transparent), transparent 70%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   body {
-    background-color: #040208;
+    background-color: #050310;
+    background-image: inherit;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
     color: var(--color-foreground);
     min-height: 100dvh;
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
-    overscroll-behavior-x: none;
+    overscroll-behavior: none;
     position: relative;
   }
 
@@ -219,6 +230,19 @@
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+/* Shared social / epic canvas — keeps overscroll the same color as the UI */
+.ga-app-shell {
+  background-color: #050310;
+  background-image:
+    radial-gradient(120% 60% at 20% 0%, color-mix(in oklab, var(--epic-violet) 28%, transparent), transparent 60%),
+    radial-gradient(90% 50% at 90% 18%, color-mix(in oklab, var(--social-blue) 20%, transparent), transparent 65%),
+    radial-gradient(100% 60% at 50% 100%, color-mix(in oklab, var(--epic-violet-deep) 45%, transparent), transparent 70%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overscroll-behavior: none;
 }
 
 /* GA login mock — beat autofill + match reference polish */
