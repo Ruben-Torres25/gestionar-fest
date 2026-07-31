@@ -16,6 +16,8 @@ import { Route as FiestasRouteImport } from './routes/fiestas'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MiEntradaRouteImport } from './routes/mi-entrada'
 import { Route as RegistroRouteImport } from './routes/registro'
+import { Route as SocialIndexRouteImport } from './routes/social.index'
+import { Route as SocialDescubrirRouteImport } from './routes/social.descubrir'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,6 +54,16 @@ const RegistroRoute = RegistroRouteImport.update({
   path: '/registro',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SocialIndexRoute = SocialIndexRouteImport.update({
+  id: '/social/',
+  path: '/social/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SocialDescubrirRoute = SocialDescubrirRouteImport.update({
+  id: '/social/descubrir',
+  path: '/social/descubrir',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +73,8 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/mi-entrada': typeof MiEntradaRoute
   '/registro': typeof RegistroRoute
+  '/social/descubrir': typeof SocialDescubrirRoute
+  '/social/': typeof SocialIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +84,8 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/mi-entrada': typeof MiEntradaRoute
   '/registro': typeof RegistroRoute
+  '/social/descubrir': typeof SocialDescubrirRoute
+  '/social': typeof SocialIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +96,8 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/mi-entrada': typeof MiEntradaRoute
   '/registro': typeof RegistroRoute
+  '/social/descubrir': typeof SocialDescubrirRoute
+  '/social/': typeof SocialIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +109,8 @@ export interface FileRouteTypes {
     | '/login'
     | '/mi-entrada'
     | '/registro'
+    | '/social/descubrir'
+    | '/social/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +120,8 @@ export interface FileRouteTypes {
     | '/login'
     | '/mi-entrada'
     | '/registro'
+    | '/social/descubrir'
+    | '/social'
   id:
     | '__root__'
     | '/'
@@ -109,6 +131,8 @@ export interface FileRouteTypes {
     | '/login'
     | '/mi-entrada'
     | '/registro'
+    | '/social/descubrir'
+    | '/social/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,6 +143,8 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   MiEntradaRoute: typeof MiEntradaRoute
   RegistroRoute: typeof RegistroRoute
+  SocialDescubrirRoute: typeof SocialDescubrirRoute
+  SocialIndexRoute: typeof SocialIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -172,6 +198,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegistroRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/social/': {
+      id: '/social/'
+      path: '/social'
+      fullPath: '/social/'
+      preLoaderRoute: typeof SocialIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/social/descubrir': {
+      id: '/social/descubrir'
+      path: '/social/descubrir'
+      fullPath: '/social/descubrir'
+      preLoaderRoute: typeof SocialDescubrirRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -183,6 +223,8 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   MiEntradaRoute: MiEntradaRoute,
   RegistroRoute: RegistroRoute,
+  SocialDescubrirRoute: SocialDescubrirRoute,
+  SocialIndexRoute: SocialIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

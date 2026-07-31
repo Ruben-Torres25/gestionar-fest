@@ -2,6 +2,18 @@
 @source "../src";
 @import "tw-animate-css";
 
+@font-face {
+  font-family: "Aspire SmallCaps";
+  src:
+    url("/fonts/AspireSmallCaps.woff2") format("woff2"),
+    url("/fonts/AspireSmallCaps.woff") format("woff"),
+    url("/fonts/AspireSmallCaps.ttf") format("truetype"),
+    url("/fonts/AspireSmallCaps.otf") format("opentype");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 /*
@@ -23,11 +35,17 @@
   --font-sans: "Oswald", system-ui, sans-serif;
   --font-ga: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --font-pass: "Space Grotesk", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-ui: "Sora", system-ui, sans-serif;
+  --font-brand: "Bebas Neue", "Anton", system-ui, sans-serif;
   --color-epic-violet: var(--epic-violet);
   --color-epic-violet-bright: var(--epic-violet-bright);
   --color-epic-violet-deep: var(--epic-violet-deep);
   --color-epic-gold: var(--epic-gold);
   --color-epic-night: var(--epic-night);
+  --color-social-blue: var(--social-blue);
+  --color-social-pink: var(--social-pink);
+  --color-social-gold: var(--social-gold);
+  --color-gestionar-green: var(--gestionar-green);
   --color-ga-blue: var(--ga-blue);
   --color-ga-blue-bright: var(--ga-blue-bright);
   --color-ga-green: var(--ga-green);
@@ -82,6 +100,10 @@
   --epic-violet-deep: oklch(0.34 0.18 292);
   --epic-gold: oklch(0.84 0.13 85);
   --epic-night: oklch(0.09 0.03 285);
+  --social-blue: oklch(0.66 0.19 250);
+  --social-pink: oklch(0.7 0.19 340);
+  --social-gold: oklch(0.87 0.15 92);
+  --gestionar-green: oklch(0.66 0.13 150);
   /* Neon palette matched to GestionAR login mock */
   --ga-blue: #0088ff;
   --ga-blue-bright: #00c2ff;
@@ -168,6 +190,15 @@
   }
 }
 
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 /* GA login mock — beat autofill + match reference polish */
 @layer components {
   .font-ga {
@@ -176,6 +207,14 @@
 
   .font-pass {
     font-family: var(--font-pass);
+  }
+
+  .font-ui {
+    font-family: var(--font-ui);
+  }
+
+  .font-brand {
+    font-family: var(--font-brand);
   }
 
   .pass-glow-corner {
