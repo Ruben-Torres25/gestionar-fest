@@ -1,6 +1,9 @@
 import { motion } from "motion/react";
 import { Sparkles, X } from "lucide-react";
 
+const ACTION_TYPE =
+  "font-pass tracking-[-0.015em] antialiased [font-feature-settings:'ss01'_on,'kern'_on]";
+
 export function SocialActions({
   onPass,
   onLike,
@@ -20,13 +23,13 @@ export function SocialActions({
           disabled={disabled}
           onClick={onPass}
           whileTap={{ scale: 0.95 }}
-          className="flex min-h-[48px] shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[1rem] border bg-black/55 px-3 font-ui text-[0.72rem] font-medium uppercase tracking-[0.08em] text-white/70 backdrop-blur disabled:opacity-40"
+          className={`flex min-h-[48px] shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[1rem] border bg-black/55 px-3 text-[0.8rem] font-medium text-white/72 backdrop-blur disabled:opacity-40 ${ACTION_TYPE}`}
           style={{
             borderColor: "color-mix(in oklab, var(--epic-violet) 28%, rgba(255,255,255,0.18))",
             boxShadow: "none",
           }}
         >
-          <X className="size-3.5 shrink-0 opacity-80" />
+          <X className="size-3.5 shrink-0 opacity-80" strokeWidth={2.1} />
           <span className="hidden min-[360px]:inline">Paso</span>
         </motion.button>
 
@@ -35,7 +38,7 @@ export function SocialActions({
           disabled={disabled}
           onClick={onLike}
           whileTap={{ scale: 0.97 }}
-          className="relative flex min-h-[52px] min-w-0 flex-[1.35] items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-[1.05rem] px-3 font-ui text-[0.78rem] font-semibold uppercase tracking-[0.1em] text-white disabled:opacity-40"
+          className={`relative flex min-h-[52px] min-w-0 flex-[1.35] items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-[1.05rem] px-3 text-[0.86rem] font-semibold text-white disabled:opacity-40 ${ACTION_TYPE}`}
           style={{
             background:
               "linear-gradient(100deg, var(--epic-violet-deep), var(--epic-violet) 45%, var(--epic-violet-bright))",
@@ -43,8 +46,8 @@ export function SocialActions({
               "0 12px 28px -16px color-mix(in oklab, var(--epic-violet) 90%, transparent), inset 0 1px 0 rgba(255,255,255,0.28)",
           }}
         >
-          <Sparkles className="size-4 shrink-0" />
-          Me interesa
+          <Sparkles className="size-4 shrink-0" strokeWidth={2.1} />
+          Me Interesa
         </motion.button>
 
         <motion.button
@@ -52,7 +55,7 @@ export function SocialActions({
           disabled={disabled}
           onClick={onHighlight}
           whileTap={{ scale: 0.95 }}
-          className="flex min-h-[50px] min-w-0 flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-[1rem] border px-2 font-ui text-[0.68rem] font-semibold uppercase tracking-[0.04em] backdrop-blur disabled:opacity-40 min-[390px]:px-2.5 min-[390px]:text-[0.7rem]"
+          className={`flex min-h-[50px] min-w-0 flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-[1rem] border px-2 text-[0.78rem] font-semibold backdrop-blur disabled:opacity-40 min-[390px]:px-2.5 min-[390px]:text-[0.8rem] ${ACTION_TYPE}`}
           style={{
             borderColor: "color-mix(in oklab, var(--social-blue) 70%, transparent)",
             background:
