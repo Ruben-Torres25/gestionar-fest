@@ -34,7 +34,7 @@ export function DiscoverPage() {
 
   return (
     <SocialLayout active="descubrir" noScroll>
-      <div className="flex h-full flex-col pb-4">
+      <div className="flex h-full flex-col pb-3">
         <DiscoverHeader onFilters={() => setFilters(true)} />
 
         <div className="relative mt-4 flex flex-1 flex-col">
@@ -62,9 +62,6 @@ export function DiscoverPage() {
             onLike={() => decide("like")}
             onHighlight={highlight}
           />
-          <p className="mt-2 px-5 text-center text-[0.6rem] tracking-wide text-white/30">
-            Prototipo visual con asistentes simulados
-          </p>
         </div>
       </div>
 
