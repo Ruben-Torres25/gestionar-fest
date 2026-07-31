@@ -1,4 +1,4 @@
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate, useRouterState } from "@tanstack/react-router";
 import { toast } from "sonner";
 
 import { getSession } from "@/lib/ga-session";
@@ -64,8 +64,25 @@ function IconCalendar({ className }: { className?: string }) {
   );
 }
 
-export function GaBottomNav({ active = "destacados", className }: GaBottomNavProps) {
+function tabFromPath(pathname: string): TabId {
+  if (
+    pathname.startsWith("/entradas") ||
+    pathname.startsWith("/mi-entrada")
+  ) {
+    return "entradas";
+  }
+  if (pathname.startsWith("/fiestas") || pathname.startsWith("/epic")) {
+    return "destacados";
+  }
+  return "destacados";
+}
+
+export function GaBottomNav({ active: _activeProp, className }: GaBottomNavProps) {
   const navigate = useNavigate();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  // Route is source of truth so the pill moves with navigation.
+  const active = tabFromPath(pathname);
+  void _activeProp;
 
   function onSoon(label: string) {
     toast(`${label} próximamente`);
@@ -89,10 +106,19 @@ export function GaBottomNav({ active = "destacados", className }: GaBottomNavPro
         )}
         aria-current={active === "destacados" ? "page" : undefined}
       >
-        <span className="ga-nav-active__inner inline-flex h-full w-full items-center justify-center gap-1 rounded-full px-3.5">
-          <IconSparkles className="size-5 text-[#3b9dff]" />
-          <span className="font-ga text-[14px] font-medium text-[#50df74]">Eventos</span>
-        </span>
+        {active === "destacados" ? (
+          <span className="ga-nav-active__inner inline-flex h-full w-full items-center justify-center gap-1 rounded-full px-3.5">
+            <IconSparkles className="size-5 text-[#3b9dff]" />
+            <span className="font-ga text-[14px] font-medium text-[#50df74]">Eventos</span>
+          </span>
+        ) : (
+          <span className="inline-flex h-full w-full flex-col items-center justify-center gap-0 text-white/50">
+            <IconSparkles className="size-[22px] text-[#8a9199]" />
+            <span className="font-ga -mt-0.5 text-[11px] font-medium leading-none text-[#b0b6be]">
+              Eventos
+            </span>
+          </span>
+        )}
       </button>
 
       <button
@@ -104,20 +130,26 @@ export function GaBottomNav({ active = "destacados", className }: GaBottomNavPro
           });
         }}
         className={cn(
-          "inline-flex h-11 flex-1 cursor-pointer flex-col items-center justify-center gap-0 transition-opacity duration-200 hover:opacity-80 active:scale-95",
-          active === "entradas" ? "text-[#50df74]" : "text-white/50",
+          "inline-flex h-11 flex-1 cursor-pointer items-center justify-center rounded-full transition-transform duration-200 active:scale-[0.98]",
+          active === "entradas" && "ga-nav-active",
         )}
         aria-current={active === "entradas" ? "page" : undefined}
       >
-        <IconTicket className="size-[22px]" />
-        <span
-          className={cn(
-            "font-ga -mt-0.5 text-[11px] font-medium leading-none",
-            active === "entradas" ? "text-[#50df74]" : "text-[#b0b6be]",
-          )}
-        >
-          Mis entradas
-        </span>
+        {active === "entradas" ? (
+          <span className="ga-nav-active__inner inline-flex h-full w-full flex-col items-center justify-center gap-0 rounded-full px-2">
+            <IconTicket className="size-[22px]" />
+            <span className="font-ga -mt-0.5 text-[11px] font-medium leading-none text-[#50df74]">
+              Mis entradas
+            </span>
+          </span>
+        ) : (
+          <span className="inline-flex h-full w-full flex-col items-center justify-center gap-0 text-white/50">
+            <IconTicket className="size-[22px]" />
+            <span className="font-ga -mt-0.5 text-[11px] font-medium leading-none text-[#b0b6be]">
+              Mis entradas
+            </span>
+          </span>
+        )}
       </button>
 
       <button

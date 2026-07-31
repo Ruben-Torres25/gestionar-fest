@@ -42,7 +42,7 @@ export function EpicCTA() {
   );
 }
 
-/** Subtle secondary entry — sits bottom-left so it doesn't cover the bear. */
+/** Compact secondary entry — same gradient as Ver entradas, bottom-left. */
 export function EpicSocialLink() {
   const navigate = useNavigate();
 
@@ -53,11 +53,25 @@ export function EpicSocialLink() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 2.05, duration: 0.55, ease: "easeOut" }}
+      whileHover={{ scale: 1.015 }}
       whileTap={{ scale: 0.97 }}
-      className="pointer-events-auto inline-flex min-h-[32px] cursor-pointer items-center gap-1 rounded-full border border-white/12 bg-black/35 px-3 py-1.5 font-ui text-[0.7rem] font-medium tracking-[0.02em] text-white/70 backdrop-blur-sm transition-colors hover:border-white/20 hover:bg-black/45 hover:text-white/90"
+      className="group pointer-events-auto relative inline-flex min-h-[32px] cursor-pointer items-center gap-1 overflow-hidden rounded-xl px-3 py-1.5 font-ui text-[0.72rem] font-semibold tracking-wide text-white"
+      style={PRIMARY_STYLE}
     >
-      GestionAR Social
-      <ArrowUpRight className="size-3 opacity-70" strokeWidth={2} aria-hidden />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-35"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 42%)",
+        }}
+      />
+      <span className="relative">GestionAR Social</span>
+      <ArrowUpRight
+        className="relative size-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+        strokeWidth={2.1}
+        aria-hidden
+      />
     </motion.button>
   );
 }
