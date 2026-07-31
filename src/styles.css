@@ -110,6 +110,8 @@
   --ga-green: #00e676;
   --ga-night: #05070d;
   --ga-card: #0a1018;
+  /* Solid canvas shown on mobile pull-to-refresh / rubber-band (images are ignored there). */
+  --ga-canvas: #160a28;
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
@@ -190,24 +192,21 @@
     max-width: 100%;
     overflow-x: hidden;
     overscroll-behavior-x: none;
-    background-color: #050310;
-    background-image:
-      radial-gradient(120% 60% at 20% 0%, color-mix(in oklab, var(--epic-violet) 28%, transparent), transparent 60%),
-      radial-gradient(90% 50% at 90% 18%, color-mix(in oklab, var(--social-blue) 20%, transparent), transparent 65%),
-      radial-gradient(100% 60% at 50% 100%, color-mix(in oklab, var(--epic-violet-deep) 45%, transparent), transparent 70%);
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
+    /* Pull-to-refresh only paints this solid color on most mobile browsers. */
+    background-color: var(--ga-canvas);
   }
 
   body {
-    background-color: #050310;
-    background-image: inherit;
-    background-attachment: fixed;
+    background-color: var(--ga-canvas);
+    background-image:
+      radial-gradient(120% 60% at 20% 0%, color-mix(in oklab, var(--epic-violet) 32%, transparent), transparent 60%),
+      radial-gradient(90% 50% at 90% 18%, color-mix(in oklab, var(--social-blue) 22%, transparent), transparent 65%),
+      radial-gradient(100% 60% at 50% 100%, color-mix(in oklab, var(--epic-violet-deep) 48%, transparent), transparent 70%);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
     color: var(--color-foreground);
     min-height: 100dvh;
+    min-height: 100svh;
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
@@ -232,16 +231,15 @@
   }
 }
 
-/* Shared social / epic canvas — keeps overscroll the same color as the UI */
+/* Shared social / epic canvas — base solid matches pull-to-refresh overscroll */
 .ga-app-shell {
-  background-color: #050310;
+  background-color: var(--ga-canvas);
   background-image:
-    radial-gradient(120% 60% at 20% 0%, color-mix(in oklab, var(--epic-violet) 28%, transparent), transparent 60%),
-    radial-gradient(90% 50% at 90% 18%, color-mix(in oklab, var(--social-blue) 20%, transparent), transparent 65%),
-    radial-gradient(100% 60% at 50% 100%, color-mix(in oklab, var(--epic-violet-deep) 45%, transparent), transparent 70%);
-  background-attachment: fixed;
+    radial-gradient(120% 60% at 20% 0%, color-mix(in oklab, var(--epic-violet) 32%, transparent), transparent 60%),
+    radial-gradient(90% 50% at 90% 18%, color-mix(in oklab, var(--social-blue) 22%, transparent), transparent 65%),
+    radial-gradient(100% 60% at 50% 100%, color-mix(in oklab, var(--epic-violet-deep) 48%, transparent), transparent 70%);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
 }
 
 /* GA login mock — beat autofill + match reference polish */

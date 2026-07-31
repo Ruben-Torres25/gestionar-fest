@@ -84,7 +84,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "GestionAR Social" },
       { name: "description", content: "La previa también se vive acá: experiencia social de Epic Fest." },
       { name: "author", content: "GestionAR" },
-      { name: "theme-color", content: "#050310" },
+      { name: "theme-color", content: "#160a28" },
+      { name: "theme-color", content: "#160a28", media: "(prefers-color-scheme: dark)" },
       { name: "color-scheme", content: "dark" },
       { property: "og:title", content: "GestionAR Social" },
       { property: "og:description", content: "La previa también se vive acá: experiencia social de Epic Fest." },
@@ -114,13 +115,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="es" className="dark" style={{ backgroundColor: "#050310" }}>
+    <html lang="es" className="dark" style={{ backgroundColor: "#160a28" }}>
       <head>
         <HeadContent />
       </head>
       <body
         className="max-w-[100vw] overflow-x-hidden text-foreground antialiased"
-        style={{ backgroundColor: "#050310", minHeight: "100dvh" }}
+        style={{ backgroundColor: "#160a28", minHeight: "100dvh" }}
       >
         {children}
         <Scripts />
