@@ -4,7 +4,7 @@ export function VibeTags({ tags }: { tags: string[] }) {
       {tags.map((t) => (
         <span
           key={t}
-          className="rounded-full border border-white/20 bg-white/10 px-2.5 py-1 text-[0.65rem] text-white/85 backdrop-blur"
+          className="rounded-full border border-white/18 bg-white/[0.08] px-2 py-0.5 font-ui text-[0.62rem] text-white/82 backdrop-blur"
         >
           {t}
         </span>

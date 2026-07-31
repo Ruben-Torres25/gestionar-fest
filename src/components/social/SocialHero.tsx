@@ -8,7 +8,7 @@ export function SocialHero() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="text-center font-display text-[2.15rem] uppercase leading-[2.25rem] text-white"
+        className="text-center font-brand text-[2.35rem] uppercase leading-none tracking-[0.04em] text-white"
         style={{
           textShadow: "0 0 26px color-mix(in oklab, var(--epic-violet) 42%, transparent)",
         }}
@@ -20,17 +20,17 @@ export function SocialHero() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.5 }}
-        className="mt-3 text-center font-display text-[0.95rem] uppercase leading-snug tracking-[0.06em] text-white/88"
+        className="mt-3 text-center font-ui text-[0.78rem] font-medium uppercase leading-snug tracking-[0.08em] text-white/80"
       >
         Exclusivo para{" "}
-        <span className="text-epic-violet-bright">LA COMUNIDAD DE EPIC FEST</span>
+        <span className="font-semibold text-epic-violet-bright">LA COMUNIDAD DE EPIC FEST</span>
       </motion.p>
 
       <motion.p
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4, duration: 0.5 }}
-        className="mt-4 max-w-[38ch] text-[0.87rem] font-light leading-6 text-white/70"
+        className="mt-4 max-w-[38ch] font-ui text-[0.87rem] font-normal leading-6 text-white/70"
       >
         Conocé a quienes vas a ver esta noche..
         <br />

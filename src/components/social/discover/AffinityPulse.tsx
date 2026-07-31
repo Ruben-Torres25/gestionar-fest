@@ -40,8 +40,8 @@ export function AffinityPulse({ label, tone }: { label: string; tone: string }) 
         ))}
       </svg>
       <span
-        className="font-display text-[0.62rem] uppercase tracking-[0.16em]"
-        style={{ color: "rgba(255,255,255,0.92)" }}
+        className="font-ui text-[0.62rem] font-medium uppercase tracking-[0.08em]"
+        style={{ color: "rgba(255,255,255,0.88)" }}
       >
         {label}
       </span>

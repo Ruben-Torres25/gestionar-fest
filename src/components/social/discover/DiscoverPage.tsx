@@ -55,7 +55,7 @@ export function DiscoverPage() {
           </AnimatePresence>
         </div>
 
-        <div className="mt-4">
+        <div className="mt-7">
           <SocialActions
             disabled={!current}
             onPass={() => decide("pass")}

@@ -33,7 +33,7 @@ export function SwipeOverlay({ x }: { x: MotionValue<number> }) {
           boxShadow: "0 0 24px -6px var(--epic-violet-bright)",
         }}
       >
-        Interesante
+        Me interesa
       </motion.span>
       <motion.span
         className="pointer-events-none absolute left-5 top-16 rounded-full border border-white/30 bg-black/40 px-3.5 py-2 font-display text-[0.66rem] uppercase tracking-[0.22em] text-white/85"

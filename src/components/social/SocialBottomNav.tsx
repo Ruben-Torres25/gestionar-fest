@@ -3,8 +3,8 @@ import { Compass, Home, MessageCircle, Users } from "lucide-react";
 
 const ITEMS = [
   { key: "inicio", label: "Inicio", icon: Home, to: "/social" as const },
-  { key: "descubrir", label: "¿A quién veo hoy?", icon: Compass, to: "/social/descubrir" as const },
-  { key: "conexiones", label: "Hice match con..", icon: Users, to: null },
+  { key: "descubrir", label: "Ver gente", icon: Compass, to: "/social/descubrir" as const },
+  { key: "conexiones", label: "Matches", icon: Users, to: null },
   { key: "mensajes", label: "Mensajes", icon: MessageCircle, to: null },
 ];
 
@@ -39,7 +39,7 @@ export function SocialBottomNav({ active }: { active: string }) {
                 }}
               />
               <span
-                className="max-w-[4.75rem] text-center text-[0.55rem] font-medium leading-tight tracking-[0.01em]"
+                className="font-ui text-center text-[0.62rem] font-medium leading-none tracking-[0.01em]"
                 style={{ color: isActive ? "white" : "rgba(255,255,255,0.62)" }}
               >
                 {label}

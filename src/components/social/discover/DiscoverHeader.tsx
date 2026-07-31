@@ -19,10 +19,10 @@ export function DiscoverHeader({ onFilters }: { onFilters: () => void }) {
         <ArrowLeft className="size-5" />
       </Link>
       <div className="min-w-0">
-        <h1 className="truncate font-display text-[0.95rem] uppercase leading-none tracking-[0.06em] text-white">
+        <h1 className="truncate font-ui text-[1.15rem] font-semibold leading-none tracking-[-0.02em] text-white">
           ¿A quién veo hoy?
         </h1>
-        <p className="mt-1.5 flex min-w-0 items-center gap-1.5 text-[0.7rem] font-light text-white/60">
+        <p className="mt-1 flex min-w-0 items-center gap-1.5 font-ui text-[0.7rem] font-light text-white/60">
           <span
             className="inline-block size-1.5 shrink-0 animate-pulse rounded-full"
             style={{ background: "var(--social-blue)", boxShadow: "0 0 8px var(--social-blue)" }}

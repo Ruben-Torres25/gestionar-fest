@@ -66,51 +66,54 @@ export function SocialProfileCard({
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to top, rgba(4,2,12,0.97) 4%, rgba(4,2,12,0.82) 24%, rgba(4,2,12,0.28) 48%, transparent 66%)",
+            "linear-gradient(to top, rgba(4,2,12,0.97) 4%, rgba(4,2,12,0.82) 22%, rgba(4,2,12,0.28) 46%, transparent 64%)",
         }}
       />
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-28"
-        style={{ background: "linear-gradient(to bottom, rgba(4,2,12,0.6), transparent)" }}
+        className="pointer-events-none absolute inset-x-0 top-0 h-24"
+        style={{ background: "linear-gradient(to bottom, rgba(4,2,12,0.55), transparent)" }}
       />
 
-      <div className="absolute left-4 top-4 flex flex-wrap items-center gap-2">
+      <div className="absolute left-3.5 top-3.5 flex flex-wrap items-center gap-2.5">
         <span
-          className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-display text-[0.6rem] uppercase tracking-[0.18em] text-white backdrop-blur"
+          className="inline-flex items-center gap-1 rounded-full border px-2 py-0.5 font-ui text-[0.62rem] font-medium tracking-[0.02em] text-white/95 backdrop-blur"
           style={{
-            borderColor: tone,
-            background: `color-mix(in oklab, ${tone} 22%, rgba(0,0,0,0.35))`,
-            boxShadow: `0 0 20px -8px ${tone}`,
+            borderColor: `color-mix(in oklab, ${tone} 42%, transparent)`,
+            background: `color-mix(in oklab, ${tone} 14%, rgba(0,0,0,0.42))`,
+            boxShadow: `0 0 10px -8px ${tone}`,
           }}
         >
-          <Ticket className="size-3" />
+          <Ticket className="size-2.5 opacity-80" />
           {profile.tier}
         </span>
         {profile.verified && (
           <span
-            className="inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[0.62rem] font-light text-white/90 backdrop-blur"
+            className="inline-flex items-center gap-1 rounded-full border px-2 py-0.5 font-ui text-[0.62rem] font-medium text-white/90 backdrop-blur"
             style={{
-              borderColor: "color-mix(in oklab, var(--gestionar-green) 55%, transparent)",
-              background: "color-mix(in oklab, var(--gestionar-green) 14%, rgba(0,0,0,0.3))",
+              borderColor: "color-mix(in oklab, var(--gestionar-green) 35%, transparent)",
+              background: "color-mix(in oklab, var(--gestionar-green) 10%, rgba(0,0,0,0.4))",
             }}
           >
-            <BadgeCheck className="size-3.5" style={{ color: "var(--gestionar-green)" }} />
+            <BadgeCheck className="size-3" style={{ color: "var(--gestionar-green)" }} />
             Verificado
           </span>
         )}
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 p-5">
-        <h3 className="font-display text-[2rem] uppercase leading-none text-white">
-          {profile.name} <span className="text-white/55">{profile.age}</span>
+      <div className="absolute inset-x-0 bottom-0 px-4 pb-3.5 pt-2">
+        <h3 className="font-brand text-[1.65rem] uppercase leading-none tracking-[0.02em]">
+          <span className="text-white">{profile.name}</span>
+          <span className="font-ui text-[1.05rem] font-medium normal-case tracking-normal text-white/45">
+            , {profile.age}
+          </span>
         </h3>
-        <p className="mt-3 max-w-[32ch] text-[0.85rem] font-light leading-6 text-white/80">
+        <p className="mt-2 max-w-[32ch] font-ui text-[0.8rem] font-normal leading-5 text-white/78">
           “{profile.phrase}”
         </p>
-        <div className="mt-3.5">
+        <div className="mt-2">
           <VibeTags tags={profile.tags} />
         </div>
-        <div className="mt-4">
+        <div className="mt-2">
           <AffinityPulse label={profile.affinity} tone={tone} />
         </div>
       </div>
