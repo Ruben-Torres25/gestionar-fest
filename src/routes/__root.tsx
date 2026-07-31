@@ -120,7 +120,7 @@ function RootShell({ children }: { children: ReactNode }) {
       </head>
       <body
         className="max-w-[100vw] overflow-x-hidden text-foreground antialiased"
-        style={{ backgroundColor: "#050310", minHeight: "100dvh", overscrollBehavior: "none" }}
+        style={{ backgroundColor: "#050310", minHeight: "100dvh" }}
       >
         {children}
         <Scripts />

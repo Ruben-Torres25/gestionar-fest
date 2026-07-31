@@ -20,11 +20,10 @@ export function SocialLayout({
     <div className="ga-app-shell flex min-h-[100dvh] w-full max-w-[100vw] justify-center overflow-x-hidden font-ui">
       <div className="ga-app-shell relative flex h-[100dvh] w-full max-w-[430px] flex-col overflow-hidden overflow-x-hidden sm:my-auto sm:h-[min(100dvh,900px)] sm:rounded-[2rem] sm:border sm:border-white/10">
         <div
-          className={`no-scrollbar relative z-10 min-w-0 flex-1 overflow-x-hidden overscroll-y-none ${noScroll ? "overflow-hidden" : "overflow-y-auto"}`}
+          className={`no-scrollbar relative z-10 min-w-0 flex-1 overflow-x-hidden ${noScroll ? "overflow-hidden" : "overflow-y-auto"}`}
           style={{
             paddingTop: hideNav ? undefined : "calc(env(safe-area-inset-top) + 0.85rem)",
             paddingBottom: noScroll || hideNav ? undefined : "1.75rem",
-            overscrollBehavior: "none",
           }}
         >
           {children}

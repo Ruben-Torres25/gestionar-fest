@@ -189,7 +189,7 @@
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
-    overscroll-behavior: none;
+    overscroll-behavior-x: none;
     background-color: #050310;
     background-image:
       radial-gradient(120% 60% at 20% 0%, color-mix(in oklab, var(--epic-violet) 28%, transparent), transparent 60%),
@@ -211,7 +211,7 @@
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
-    overscroll-behavior: none;
+    overscroll-behavior-x: none;
     position: relative;
   }
 
@@ -242,7 +242,6 @@
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-  overscroll-behavior: none;
 }
 
 /* GA login mock — beat autofill + match reference polish */
