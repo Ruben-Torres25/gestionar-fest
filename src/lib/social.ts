@@ -1,4 +1,5 @@
 import logoAsset from "@/assets/gestionar-logo.png.asset.json";
+import isotypeAsset from "@/assets/gestionar-ga.png.asset.json";
 import p1 from "@/assets/social/p1.jpg";
 import p2 from "@/assets/social/p2.jpg";
 import p3 from "@/assets/social/p3.jpg";
@@ -7,6 +8,7 @@ import p5 from "@/assets/social/p5.jpg";
 import p6 from "@/assets/social/p6.jpg";
 
 export const GESTIONAR_LOGO = logoAsset.url;
+export const GESTIONAR_ISOTYPE = isotypeAsset.url;
 
 export type TicketTier = "General" | "VIP" | "SuperVIP";
 
