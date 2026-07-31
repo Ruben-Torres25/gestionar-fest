@@ -21,6 +21,7 @@
 @theme inline {
   --font-display: "Anton", system-ui, sans-serif;
   --font-sans: "Oswald", system-ui, sans-serif;
+  --font-ui: "Sora", system-ui, sans-serif;
   --color-epic-violet: var(--epic-violet);
   --color-epic-violet-bright: var(--epic-violet-bright);
   --color-epic-violet-deep: var(--epic-violet-deep);
@@ -160,5 +161,14 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
