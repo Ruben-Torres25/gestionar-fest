@@ -5,6 +5,8 @@ export const Route = createFileRoute("/epic")({
   head: () => ({
     meta: [
       { title: "Epic Fest · La noche está por comenzar" },
+      { name: "theme-color", content: "#040208" },
+      { name: "color-scheme", content: "dark" },
       {
         name: "description",
         content:

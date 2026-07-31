@@ -6,7 +6,7 @@ import { EpicNavbar } from "./EpicNavbar";
 import { EpicMobileMenu } from "./EpicMobileMenu";
 import { EpicCountdown } from "./EpicCountdown";
 import { EpicHeroContent } from "./EpicHeroContent";
-import { EpicCTA } from "./EpicCTA";
+import { EpicCTA, EpicSocialLink } from "./EpicCTA";
 import { GaBottomNav } from "@/components/ga/GaBottomNav";
 
 export function EpicLanding() {
@@ -49,6 +49,10 @@ export function EpicLanding() {
           </div>
 
           <div className="mt-auto" aria-hidden />
+
+          <div className="pointer-events-none mb-2.5 flex justify-start">
+            <EpicSocialLink />
+          </div>
 
           <div
             className="pointer-events-auto relative z-20 shrink-0 -mx-1.5"
