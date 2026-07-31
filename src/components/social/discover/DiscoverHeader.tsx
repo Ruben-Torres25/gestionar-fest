@@ -22,12 +22,12 @@ export function DiscoverHeader({ onFilters }: { onFilters: () => void }) {
         <h1 className="truncate font-display text-[1.15rem] uppercase leading-none tracking-[0.08em] text-white">
           Descubrir
         </h1>
-        <p className="mt-1.5 flex items-center gap-1.5 truncate text-[0.7rem] font-light text-white/60">
+        <p className="mt-1.5 flex min-w-0 items-center gap-1.5 text-[0.7rem] font-light text-white/60">
           <span
-            className="inline-block size-1.5 animate-pulse rounded-full"
+            className="inline-block size-1.5 shrink-0 animate-pulse rounded-full"
             style={{ background: "var(--social-blue)", boxShadow: "0 0 8px var(--social-blue)" }}
           />
-          Epic Fest · {LIVE_STATS.active} personas activas
+          <span className="truncate">Epic Fest · {LIVE_STATS.active} personas activas</span>
         </p>
       </div>
       <button
