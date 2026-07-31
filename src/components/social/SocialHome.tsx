@@ -19,25 +19,32 @@ export function SocialHome() {
         transition={{ delay: 0.6, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         className="mt-6 px-5"
       >
-        <motion.div whileTap={{ scale: 0.98 }}>
+        <motion.div
+          whileTap={{ scale: 0.975 }}
+          transition={{ type: "spring", stiffness: 420, damping: 26 }}
+        >
           <Link
             to="/social/descubrir"
-            className="flex min-h-[52px] w-full items-center justify-center gap-2 rounded-2xl border border-white/25 text-sm font-semibold uppercase tracking-[0.14em] text-white"
+            className="group relative flex min-h-[54px] w-full items-center justify-center gap-2.5 overflow-hidden rounded-[1.1rem] text-[0.82rem] font-semibold uppercase tracking-[0.16em] text-white"
             style={{
               background:
-                "linear-gradient(110deg, var(--social-blue), var(--epic-violet) 55%, var(--epic-violet-bright))",
+                "linear-gradient(100deg, var(--social-blue), var(--epic-violet) 52%, var(--epic-violet-bright))",
               boxShadow:
-                "0 0 30px -8px color-mix(in oklab, var(--epic-violet) 85%, transparent), inset 0 1px 0 rgba(255,255,255,0.25)",
+                "0 16px 40px -18px color-mix(in oklab, var(--epic-violet) 95%, transparent), inset 0 1px 0 rgba(255,255,255,0.32)",
             }}
           >
-            <Sparkles className="size-4" />
-            Entrar a descubrir
-            <ArrowRight className="size-4" />
+            <span
+              className="pointer-events-none absolute inset-0 opacity-45"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(255,255,255,0.28), transparent 55%)",
+              }}
+            />
+            <Sparkles className="relative size-4" />
+            <span className="relative">Entrar a descubrir</span>
+            <ArrowRight className="relative size-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </motion.div>
-        <p className="mt-2 text-center text-[0.62rem] tracking-wide text-white/35">
-          Prototipo visual con asistentes simulados
-        </p>
       </motion.div>
 
       <SocialQuickAccess />
