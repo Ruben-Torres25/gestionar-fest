@@ -96,9 +96,9 @@ export function EpicTicketPass() {
   const tier = getTicketTier(session.ticketTierId);
 
   return (
-    <div className="flex min-h-[100dvh] w-full items-center justify-center bg-[#02010a]">
+    <div className="flex min-h-[100dvh] w-full max-w-[100vw] items-center justify-center overflow-x-hidden bg-[#02010a]">
       <main
-        className="font-pass relative flex h-[100dvh] w-full max-w-[430px] flex-col overflow-hidden sm:h-[min(100dvh,860px)] sm:rounded-[1.75rem] sm:border sm:border-white/10"
+        className="font-pass relative flex h-[100dvh] w-full max-w-[430px] flex-col overflow-hidden overflow-x-hidden sm:h-[min(100dvh,860px)] sm:rounded-[1.75rem] sm:border sm:border-white/10"
         style={{
           background:
             "linear-gradient(168deg, #11081d 0%, #07040f 45%, #04030c 100%)",

@@ -52,7 +52,7 @@ export function ChatComposer({
               placeholder="Escribí un mensaje..."
               enterKeyHint="send"
               autoComplete="off"
-              className="h-11 w-full bg-transparent font-ui text-[0.86rem] text-white outline-none placeholder:text-white/58"
+              className="h-11 w-full bg-transparent font-ui text-base text-white outline-none placeholder:text-white/58"
               style={{ touchAction: "manipulation" }}
             />
           </label>

@@ -14,10 +14,10 @@ export function GaAuthShell({ children, className }: GaAuthShellProps) {
   const reduced = useReducedMotion();
 
   return (
-    <div className="flex min-h-[100dvh] w-full items-center justify-center bg-black">
+    <div className="flex min-h-[100dvh] w-full max-w-[100vw] items-center justify-center overflow-x-hidden bg-black">
       <main
         className={cn(
-          "relative flex h-[100dvh] w-full max-w-[430px] flex-col overflow-hidden bg-black sm:h-[min(100dvh,900px)] sm:rounded-[2rem] sm:border sm:border-white/10",
+          "relative flex h-[100dvh] w-full max-w-[430px] flex-col overflow-hidden overflow-x-hidden bg-black sm:h-[min(100dvh,900px)] sm:rounded-[2rem] sm:border sm:border-white/10",
           className,
         )}
       >

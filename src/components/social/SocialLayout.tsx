@@ -17,8 +17,8 @@ export function SocialLayout({
   hideNav?: boolean;
 }) {
   return (
-    <div className="flex min-h-[100dvh] w-full justify-center bg-[#040208] font-ui">
-      <div className="relative flex h-[100dvh] w-full max-w-[430px] flex-col overflow-hidden bg-[#050310] sm:my-auto sm:h-[min(100dvh,900px)] sm:rounded-[2rem] sm:border sm:border-white/10">
+    <div className="flex min-h-[100dvh] w-full max-w-[100vw] justify-center overflow-x-hidden bg-[#040208] font-ui">
+      <div className="relative flex h-[100dvh] w-full max-w-[430px] flex-col overflow-hidden overflow-x-hidden bg-[#050310] sm:my-auto sm:h-[min(100dvh,900px)] sm:rounded-[2rem] sm:border sm:border-white/10">
         <div
           className="pointer-events-none absolute inset-0"
           style={{
@@ -27,7 +27,7 @@ export function SocialLayout({
           }}
         />
         <div
-          className={`no-scrollbar relative z-10 flex-1 ${noScroll ? "overflow-hidden" : "overflow-y-auto"}`}
+          className={`no-scrollbar relative z-10 min-w-0 flex-1 overflow-x-hidden ${noScroll ? "overflow-hidden" : "overflow-y-auto"}`}
           style={{
             paddingTop: hideNav ? undefined : "calc(env(safe-area-inset-top) + 0.85rem)",
             paddingBottom: noScroll || hideNav ? undefined : "1.75rem",

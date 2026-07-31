@@ -187,12 +187,28 @@
   html {
     background-color: #040208;
     color-scheme: dark;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
   }
 
   body {
     background-color: #040208;
     color: var(--color-foreground);
     min-height: 100dvh;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
+    position: relative;
+  }
+
+  /* iOS Safari zooms inputs under 16px on focus — keep controls at 16px. */
+  input,
+  textarea,
+  select {
+    font-size: 16px;
   }
 }
 

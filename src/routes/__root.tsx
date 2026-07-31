@@ -119,7 +119,7 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body
-        className="bg-[#040208] text-foreground antialiased"
+        className="max-w-[100vw] overflow-x-hidden bg-[#040208] text-foreground antialiased"
         style={{ backgroundColor: "#040208", minHeight: "100dvh" }}
       >
         {children}

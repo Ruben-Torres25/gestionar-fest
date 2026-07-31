@@ -54,7 +54,7 @@ export function GaPartySelector({ className }: GaPartySelectorProps) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Buscador de eventos"
-          className="ga-search h-11 w-full rounded-full border border-[#3ecf6a]/55 bg-[#070b10]/70 pl-11 pr-4 text-[14px] text-white outline-none placeholder:text-white/35 focus:border-[#50df74]/85"
+          className="ga-search h-11 w-full rounded-full border border-[#3ecf6a]/55 bg-[#070b10]/70 pl-11 pr-4 text-base text-white outline-none placeholder:text-white/35 focus:border-[#50df74]/85"
         />
       </label>
 

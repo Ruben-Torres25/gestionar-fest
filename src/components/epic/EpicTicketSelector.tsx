@@ -210,8 +210,8 @@ export function EpicTicketSelector() {
   }
 
   return (
-    <div className="flex min-h-[100dvh] w-full items-center justify-center bg-black">
-      <main className="relative flex h-[100dvh] w-full max-w-[430px] flex-col overflow-hidden bg-[#05040a] sm:h-[min(100dvh,900px)] sm:rounded-[2rem] sm:border sm:border-white/10 sm:shadow-[0_0_40px_rgba(124,58,237,0.12)]">
+    <div className="flex min-h-[100dvh] w-full max-w-[100vw] items-center justify-center overflow-x-hidden bg-black">
+      <main className="relative flex h-[100dvh] w-full max-w-[430px] flex-col overflow-hidden overflow-x-hidden bg-[#05040a] sm:h-[min(100dvh,900px)] sm:rounded-[2rem] sm:border sm:border-white/10 sm:shadow-[0_0_40px_rgba(124,58,237,0.12)]">
         <header
           className="relative z-20 grid shrink-0 grid-cols-[2.5rem_1fr_5rem] items-center px-4"
           style={{ paddingTop: "calc(env(safe-area-inset-top) + 0.55rem)" }}

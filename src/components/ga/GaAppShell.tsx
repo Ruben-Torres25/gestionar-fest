@@ -15,10 +15,10 @@ type GaAppShellProps = {
 /** App chrome for post-login screens (matches fiestas mock). */
 export function GaAppShell({ children, className, footer }: GaAppShellProps) {
   return (
-    <div className="flex min-h-[100dvh] w-full items-center justify-center bg-black">
+    <div className="flex min-h-[100dvh] w-full max-w-[100vw] items-center justify-center overflow-x-hidden bg-black">
       <main
         className={cn(
-          "relative flex h-[100dvh] w-full max-w-[430px] flex-col overflow-hidden bg-[#05070a] sm:h-[min(100dvh,900px)] sm:rounded-[2rem] sm:border sm:border-white/10",
+          "relative flex h-[100dvh] w-full max-w-[430px] flex-col overflow-hidden overflow-x-hidden bg-[#05070a] sm:h-[min(100dvh,900px)] sm:rounded-[2rem] sm:border sm:border-white/10",
           className,
         )}
       >

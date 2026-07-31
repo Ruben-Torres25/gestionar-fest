@@ -14,9 +14,9 @@ export function EpicLanding() {
   const [tapped, setTapped] = useState(false);
 
   return (
-    <div className="flex min-h-[100dvh] w-full items-center justify-center bg-[#040208]">
+    <div className="flex min-h-[100dvh] w-full max-w-[100vw] items-center justify-center overflow-x-hidden bg-[#040208]">
       <main
-        className="relative h-[100dvh] w-full max-w-[430px] overflow-hidden bg-[#040208] sm:h-[min(100dvh,900px)] sm:rounded-[2rem] sm:border sm:border-white/10"
+        className="relative h-[100dvh] w-full max-w-[430px] overflow-hidden overflow-x-hidden bg-[#040208] sm:h-[min(100dvh,900px)] sm:rounded-[2rem] sm:border sm:border-white/10"
         onPointerDown={() => setTapped(true)}
         onPointerUp={() => setTapped(false)}
         onPointerCancel={() => setTapped(false)}

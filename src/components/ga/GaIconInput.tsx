@@ -52,7 +52,7 @@ export function GaIconInput({
         <input
           id={inputId}
           className={cn(
-            "ga-field h-[46px] w-full text-[14.5px] outline-none",
+            "ga-field h-[46px] w-full text-base outline-none",
             tone === "green" && "ga-field--green",
             icon && "pl-11",
             trailing && "pr-11",
