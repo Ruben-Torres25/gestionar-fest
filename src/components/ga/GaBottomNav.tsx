@@ -1,4 +1,5 @@
 import { useNavigate, useRouterState } from "@tanstack/react-router";
+import { Home } from "lucide-react";
 import { toast } from "sonner";
 import type { ReactNode } from "react";
 
@@ -11,16 +12,6 @@ type GaBottomNavProps = {
   active?: TabId;
   className?: string;
 };
-
-/** Four-point sparkles matching the Destacados mock (filled, blue). */
-function IconSparkles({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} aria-hidden fill="currentColor">
-      <path d="M12 2.2 13.7 8.3 19.8 10 13.7 11.7 12 17.8 10.3 11.7 4.2 10 10.3 8.3Z" />
-      <path d="M18.2 3.4 18.9 5.9 21.4 6.6 18.9 7.3 18.2 9.8 17.5 7.3 15 6.6 17.5 5.9Z" />
-    </svg>
-  );
-}
 
 /** Ticket stub with side notches + perforation (metallic fill). */
 function IconTicket({ className }: { className?: string }) {
@@ -137,8 +128,8 @@ export function GaBottomNav({ active: _activeProp, className }: GaBottomNavProps
         active={active === "destacados"}
         label="Eventos"
         onClick={() => void navigate({ to: "/fiestas" })}
-        icon={<IconSparkles className="size-[18px] text-[#8a9199]" />}
-        activeIcon={<IconSparkles className="size-[18px] text-[#3b9dff]" />}
+        icon={<Home className="size-[18px] text-[#8a9199]" strokeWidth={2.1} aria-hidden />}
+        activeIcon={<Home className="size-[18px] text-[#3b9dff]" strokeWidth={2.25} aria-hidden />}
       />
 
       <TabButton
