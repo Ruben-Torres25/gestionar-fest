@@ -2,16 +2,9 @@ import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 
 const GENDERS = ["Hombres", "Mujeres", "Ambos"];
-const TIERS = ["General", "VIP", "SuperVIP"];
-const VIBES = ["Electrónica", "House", "Buena charla", "Afters"];
 
 export function FilterSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [gender, setGender] = useState("Ambos");
-  const [tiers, setTiers] = useState<string[]>([]);
-  const [vibes, setVibes] = useState<string[]>([]);
-
-  const toggle = (list: string[], set: (v: string[]) => void, value: string) =>
-    set(list.includes(value) ? list.filter((v) => v !== value) : [...list, value]);
 
   return (
     <AnimatePresence>
@@ -38,26 +31,6 @@ export function FilterSheet({ open, onClose }: { open: boolean; onClose: () => v
               {GENDERS.map((g) => (
                 <Chip key={g} active={gender === g} onClick={() => setGender(g)}>
                   {g}
-                </Chip>
-              ))}
-            </Group>
-
-            <Group label="Tipo de entrada">
-              {TIERS.map((t) => (
-                <Chip
-                  key={t}
-                  active={tiers.includes(t)}
-                  onClick={() => toggle(tiers, setTiers, t)}
-                >
-                  {t}
-                </Chip>
-              ))}
-            </Group>
-
-            <Group label="Afinidades">
-              {VIBES.map((v) => (
-                <Chip key={v} active={vibes.includes(v)} onClick={() => toggle(vibes, setVibes, v)}>
-                  {v}
                 </Chip>
               ))}
             </Group>
