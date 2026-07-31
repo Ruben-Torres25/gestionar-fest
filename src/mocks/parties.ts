@@ -16,7 +16,7 @@ const SEEDED_PARTIES: MockParty[] = [
     name: "EPIC FEST | OLAVARRÍA",
     dateLabel: "sáb, 1 ago 2026 · 23:30 hs",
     venue: "Salón Aurora | Olavarría",
-    imageUrl: "/ga/party-epic-fest.png",
+    imageUrl: "/epic/logo.png",
   },
   {
     id: "neon-vibes",

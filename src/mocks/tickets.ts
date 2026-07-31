@@ -11,8 +11,8 @@ export const MOCK_EVENT_SUMMARY = {
   name: "EPIC FEST",
   venue: "Salón Aurora · Olavarría",
   dateLabel: "sáb, 1 ago 2026 · 23:30 hs",
-  /** Bear thumb matching the purchase mock (logo.png is wordmark-only). */
-  imageUrl: "/ga/party-epic-fest.png",
+  logoUrl: "/epic/logo.png",
+  bearUrl: "/ga/party-epic-fest-suit.png",
 } as const;
 
 export const MOCK_TICKET_TIERS: MockTicketTier[] = [
@@ -20,7 +20,7 @@ export const MOCK_TICKET_TIERS: MockTicketTier[] = [
     id: "general",
     name: "General",
     description: "Acceso al evento",
-    priceLabel: "$ 25.000",
+    priceLabel: "$ 18.000",
     icon: "ticket",
     badgeLabel: "Entrada General",
   },
@@ -28,7 +28,7 @@ export const MOCK_TICKET_TIERS: MockTicketTier[] = [
     id: "vip",
     name: "VIP",
     description: "Acceso preferencial + zona VIP",
-    priceLabel: "$ 55.000",
+    priceLabel: "$ 25.000",
     icon: "star",
     badgeLabel: "Entrada VIP",
   },
@@ -36,7 +36,7 @@ export const MOCK_TICKET_TIERS: MockTicketTier[] = [
     id: "supervip",
     name: "SuperVIP",
     description: "Acceso premium + beneficios exclusivos",
-    priceLabel: "$ 120.000",
+    priceLabel: "$ 30.000",
     icon: "gem",
     badgeLabel: "Entrada SuperVIP",
   },

@@ -25,7 +25,10 @@ export function GaPartyCard({ party, onSelect, className, showDivider = true }: 
             <img
               src={party.imageUrl}
               alt=""
-              className="h-full w-full object-cover"
+              className={cn(
+                "h-full w-full",
+                party.id === "epic-fest" ? "object-contain p-2" : "object-cover",
+              )}
               draggable={false}
             />
           ) : (

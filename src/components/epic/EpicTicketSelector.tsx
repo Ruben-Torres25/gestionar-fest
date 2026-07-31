@@ -20,9 +20,53 @@ import {
 } from "@/mocks/tickets";
 import { cn } from "@/lib/utils";
 
-function TierIcon({ icon }: { icon: MockTicketTier["icon"] }) {
-  const stroke = "#c084fc";
+type TierAccent = {
+  stroke: string;
+  ring: string;
+  radio: string;
+  selectedBorder: string;
+  selectedGlow: string;
+  iconGlow: string;
+};
 
+/** Electric accents per tier — color lives on border + icon, not card fill. */
+const TIER_ACCENT: Record<string, TierAccent> = {
+  general: {
+    stroke: "#5b9fd4",
+    ring: "rgba(59, 130, 246, 0.52)",
+    radio: "#3b82f6",
+    selectedBorder: "#3b82f6",
+    selectedGlow:
+      "0 0 0 1px rgba(59,130,246,0.38), 0 0 20px rgba(37,99,235,0.4)",
+    iconGlow: "0 0 13px rgba(59,130,246,0.45)",
+  },
+  vip: {
+    stroke: "#c084fc",
+    ring: "rgba(147, 51, 234, 0.52)",
+    radio: "#9333ea",
+    selectedBorder: "#9333ea",
+    selectedGlow:
+      "0 0 0 1px rgba(147,51,234,0.38), 0 0 20px rgba(126,34,206,0.4)",
+    iconGlow: "0 0 13px rgba(147,51,234,0.45)",
+  },
+  supervip: {
+    stroke: "#e8c547",
+    ring: "rgba(201, 162, 39, 0.55)",
+    radio: "#c9a227",
+    selectedBorder: "#c9a227",
+    selectedGlow:
+      "0 0 0 1px rgba(201,162,39,0.42), 0 0 20px rgba(184,134,11,0.4)",
+    iconGlow: "0 0 13px rgba(201,162,39,0.48)",
+  },
+};
+
+function TierIcon({
+  icon,
+  stroke,
+}: {
+  icon: MockTicketTier["icon"];
+  stroke: string;
+}) {
   if (icon === "star") {
     return (
       <svg viewBox="0 0 24 24" className="size-[22px]" aria-hidden fill="none">
@@ -89,6 +133,8 @@ function TicketOption({
   selected: boolean;
   onSelect: () => void;
 }) {
+  const accent = TIER_ACCENT[tier.id] ?? TIER_ACCENT.general;
+
   return (
     <button
       type="button"
@@ -97,27 +143,26 @@ function TicketOption({
       onClick={onSelect}
       className={cn(
         "flex w-full cursor-pointer items-center gap-3 rounded-xl border bg-[#0e0c16] px-3 py-3 text-left transition-[border-color,box-shadow,background-color,transform] duration-200 active:scale-[0.99]",
-        selected
-          ? "border-[#a855f7]/90 bg-[#14101f]"
-          : "border-white/[0.08] hover:border-white/16",
+        selected ? "bg-[#14101f]" : "border-white/[0.08] hover:border-white/16",
       )}
       style={
         selected
           ? {
-              boxShadow:
-                "0 0 0 1px rgba(168,85,247,0.35), 0 0 22px rgba(168,85,247,0.38)",
+              borderColor: accent.selectedBorder,
+              boxShadow: accent.selectedGlow,
             }
           : undefined
       }
     >
       <span
-        className="flex size-12 shrink-0 items-center justify-center rounded-full border border-[#a855f7]/45 bg-[#120e1c]"
+        className="flex size-12 shrink-0 items-center justify-center rounded-full border bg-[#120e1c]"
         style={{
-          boxShadow: selected ? "0 0 12px rgba(168,85,247,0.25)" : undefined,
+          borderColor: selected ? accent.ring : `${accent.stroke}73`,
+          boxShadow: selected ? accent.iconGlow : undefined,
         }}
         aria-hidden
       >
-        <TierIcon icon={tier.icon} />
+        <TierIcon icon={tier.icon} stroke={accent.stroke} />
       </span>
 
       <span className="min-w-0 flex-1">
@@ -132,10 +177,19 @@ function TicketOption({
           {tier.priceLabel}
         </span>
         <span
-          className={cn(
-            "flex size-[18px] items-center justify-center rounded-full border-[2px] transition-colors duration-200",
-            selected ? "border-[#a855f7] bg-[#a855f7]" : "border-white/35 bg-transparent",
-          )}
+          className="flex size-[18px] items-center justify-center rounded-full border-[2px] transition-colors duration-200"
+          style={
+            selected
+              ? {
+                  borderColor: accent.radio,
+                  background: accent.radio,
+                  boxShadow: `0 0 10px ${accent.ring}`,
+                }
+              : {
+                  borderColor: "rgba(255,255,255,0.35)",
+                  background: "transparent",
+                }
+          }
           aria-hidden
         >
           {selected ? <span className="size-1.5 rounded-full bg-white" /> : null}
@@ -197,35 +251,55 @@ export function EpicTicketSelector() {
 
         <div className="relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden px-4 pb-2 pt-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <section
-            className="flex shrink-0 items-center gap-3 rounded-xl border border-white/[0.08] bg-[#0e0c16] p-3"
+            className="relative flex shrink-0 items-stretch overflow-hidden rounded-xl border border-white/[0.08] bg-[#0e0c16]"
             aria-label="Resumen del evento"
           >
-            <div
-              className="size-[68px] shrink-0 overflow-hidden rounded-xl bg-[#1a1528]"
-              style={{
-                boxShadow:
-                  "0 0 0 1px rgba(168,85,247,0.35), 0 0 18px rgba(168,85,247,0.4)",
-              }}
-            >
+            <div className="relative z-10 flex min-w-0 flex-1 items-center gap-3 p-3 pr-2">
+              <div
+                className="size-[68px] shrink-0 overflow-hidden rounded-xl bg-[#120e1c]"
+                style={{
+                  boxShadow:
+                    "0 0 0 1px rgba(168,85,247,0.35), 0 0 18px rgba(168,85,247,0.4)",
+                }}
+              >
+                <img
+                  src={MOCK_EVENT_SUMMARY.logoUrl}
+                  alt=""
+                  className="h-full w-full object-contain p-1.5"
+                  draggable={false}
+                />
+              </div>
+              <div className="min-w-0">
+                <p className="text-[14.5px] font-bold uppercase tracking-[0.04em] text-white">
+                  {MOCK_EVENT_SUMMARY.name}
+                </p>
+                <p className="mt-1.5 flex items-center gap-1.5 text-[11.5px] text-white/48">
+                  <MapPin className="size-3.5 shrink-0 text-[#c084fc]" aria-hidden />
+                  <span className="truncate">{MOCK_EVENT_SUMMARY.venue}</span>
+                </p>
+                <p className="mt-1 flex items-center gap-1.5 text-[11.5px] text-white/48">
+                  <CalendarDays className="size-3.5 shrink-0 text-[#c084fc]" aria-hidden />
+                  <span className="truncate">{MOCK_EVENT_SUMMARY.dateLabel}</span>
+                </p>
+              </div>
+            </div>
+
+            <div className="relative w-[42%] max-w-[150px] shrink-0 self-stretch min-h-[96px]">
+              <div
+                className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10"
+                style={{
+                  background:
+                    "linear-gradient(90deg, #0e0c16 0%, rgba(14,12,22,0) 100%)",
+                }}
+                aria-hidden
+              />
               <img
-                src={MOCK_EVENT_SUMMARY.imageUrl}
+                src={MOCK_EVENT_SUMMARY.bearUrl}
                 alt=""
-                className="h-full w-full object-cover object-center"
+                className="absolute inset-0 h-full w-full object-cover"
+                style={{ objectPosition: "58% 8%" }}
                 draggable={false}
               />
-            </div>
-            <div className="min-w-0">
-              <p className="text-[14.5px] font-bold uppercase tracking-[0.04em] text-white">
-                {MOCK_EVENT_SUMMARY.name}
-              </p>
-              <p className="mt-1.5 flex items-center gap-1.5 text-[11.5px] text-white/48">
-                <MapPin className="size-3.5 shrink-0 text-[#c084fc]" aria-hidden />
-                <span className="truncate">{MOCK_EVENT_SUMMARY.venue}</span>
-              </p>
-              <p className="mt-1 flex items-center gap-1.5 text-[11.5px] text-white/48">
-                <CalendarDays className="size-3.5 shrink-0 text-[#c084fc]" aria-hidden />
-                <span className="truncate">{MOCK_EVENT_SUMMARY.dateLabel}</span>
-              </p>
             </div>
           </section>
 
@@ -234,7 +308,7 @@ export function EpicTicketSelector() {
               Seleccioná tu entrada
             </h2>
             <p className="mt-1 text-[12.5px] text-white/42">
-              Elegí el tipo de entrada que más te convenga.
+              Elegí el tipo de entrada que más te divierta.
             </p>
           </div>
 
