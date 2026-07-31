@@ -1,5 +1,5 @@
 import { useNavigate, useRouterState } from "@tanstack/react-router";
-import { Home } from "lucide-react";
+import { CalendarDays, Home, Ticket } from "lucide-react";
 import { toast } from "sonner";
 import type { ReactNode } from "react";
 
@@ -13,48 +13,8 @@ type GaBottomNavProps = {
   className?: string;
 };
 
-/** Ticket stub with side notches + perforation (metallic fill). */
-function IconTicket({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} aria-hidden>
-      <defs>
-        <linearGradient id="gaTicketGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#d8dde3" />
-          <stop offset="100%" stopColor="#7a828c" />
-        </linearGradient>
-      </defs>
-      <path
-        fill="url(#gaTicketGrad)"
-        d="M5 6.4h14a1.2 1.2 0 0 1 1.2 1.2v2.05a1.7 1.7 0 0 0 0 3.5v2.05A1.2 1.2 0 0 1 19 16.4H5a1.2 1.2 0 0 1-1.2-1.2v-2.05a1.7 1.7 0 0 0 0-3.5V7.6A1.2 1.2 0 0 1 5 6.4Z"
-      />
-      <rect x="11.25" y="9.15" width="1.5" height="1.2" rx="0.25" fill="#12151c" />
-      <rect x="11.25" y="11.4" width="1.5" height="1.2" rx="0.25" fill="#12151c" />
-      <rect x="11.25" y="13.65" width="1.5" height="1.2" rx="0.25" fill="#12151c" />
-    </svg>
-  );
-}
-
-/** Calendar with silver vertical fill matching Agenda mock. */
-function IconCalendar({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} aria-hidden>
-      <defs>
-        <linearGradient id="gaCalGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#e4e8ed" />
-          <stop offset="100%" stopColor="#7a828c" />
-        </linearGradient>
-      </defs>
-      <path
-        fill="url(#gaCalGrad)"
-        d="M7.2 3.6h1.5v1.4h6.6V3.6h1.5v1.4h1.7c.9 0 1.6.7 1.6 1.6v12.2c0 .9-.7 1.6-1.6 1.6H5.5c-.9 0-1.6-.7-1.6-1.6V6.6c0-.9.7-1.6 1.6-1.6h1.7V3.6Z"
-      />
-      <path fill="#0e1218" d="M4.1 9.2h15.8v1.35H4.1z" />
-      <circle cx="8.2" cy="13.6" r="1.05" fill="#0e1218" />
-      <circle cx="12" cy="13.6" r="1.05" fill="#0e1218" />
-      <circle cx="15.8" cy="13.6" r="1.05" fill="#0e1218" />
-    </svg>
-  );
-}
+const ICON_CLASS = "size-[20px] shrink-0";
+const ICON_STROKE = 2;
 
 function tabFromPath(pathname: string): TabId {
   if (pathname.startsWith("/entradas") || pathname.startsWith("/mi-entrada")) {
@@ -71,10 +31,9 @@ type TabButtonProps = {
   label: string;
   onClick: () => void;
   icon: ReactNode;
-  activeIcon?: ReactNode;
 };
 
-function TabButton({ active, label, onClick, icon, activeIcon }: TabButtonProps) {
+function TabButton({ active, label, onClick, icon }: TabButtonProps) {
   return (
     <button
       type="button"
@@ -91,7 +50,7 @@ function TabButton({ active, label, onClick, icon, activeIcon }: TabButtonProps)
           active && "ga-nav-active__inner",
         )}
       >
-        {active ? (activeIcon ?? icon) : icon}
+        {icon}
         <span
           className={cn(
             "font-ga max-w-full truncate text-[10px] font-medium leading-none",
@@ -128,8 +87,13 @@ export function GaBottomNav({ active: _activeProp, className }: GaBottomNavProps
         active={active === "destacados"}
         label="Eventos"
         onClick={() => void navigate({ to: "/fiestas" })}
-        icon={<Home className="size-[18px] text-[#8a9199]" strokeWidth={2.1} aria-hidden />}
-        activeIcon={<Home className="size-[18px] text-[#3b9dff]" strokeWidth={2.25} aria-hidden />}
+        icon={
+          <Home
+            className={cn(ICON_CLASS, active === "destacados" ? "text-[#50df74]" : "text-[#8a9199]")}
+            strokeWidth={ICON_STROKE}
+            aria-hidden
+          />
+        }
       />
 
       <TabButton
@@ -141,14 +105,26 @@ export function GaBottomNav({ active: _activeProp, className }: GaBottomNavProps
             to: session.ticketTierId ? "/mi-entrada" : "/entradas",
           });
         }}
-        icon={<IconTicket className="size-[18px]" />}
+        icon={
+          <Ticket
+            className={cn(ICON_CLASS, active === "entradas" ? "text-[#50df74]" : "text-[#8a9199]")}
+            strokeWidth={ICON_STROKE}
+            aria-hidden
+          />
+        }
       />
 
       <TabButton
         active={false}
         label="Agenda"
         onClick={() => onSoon("Agenda")}
-        icon={<IconCalendar className="size-[18px]" />}
+        icon={
+          <CalendarDays
+            className={cn(ICON_CLASS, "text-[#8a9199]")}
+            strokeWidth={ICON_STROKE}
+            aria-hidden
+          />
+        }
       />
     </nav>
   );
