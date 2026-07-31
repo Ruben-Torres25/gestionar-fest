@@ -1,11 +1,17 @@
 import { Link } from "@tanstack/react-router";
-import { Compass, Home, MessageCircle, Users } from "lucide-react";
+import { Compass, Heart, Home, MessageCircle } from "lucide-react";
 
 const ITEMS = [
   { key: "inicio", label: "Inicio", icon: Home, to: "/social" as const },
   { key: "descubrir", label: "Ver gente", icon: Compass, to: "/social/descubrir" as const },
-  { key: "conexiones", label: "Matches", icon: Users, to: null },
-  { key: "mensajes", label: "Mensajes", icon: MessageCircle, to: null },
+  { key: "conexiones", label: "Matches", icon: Heart, to: "/social/matches" as const },
+  {
+    key: "mensajes",
+    label: "Mensajes",
+    icon: MessageCircle,
+    to: "/social/mensajes" as const,
+    badge: true,
+  },
 ];
 
 export function SocialBottomNav({ active }: { active: string }) {
@@ -15,8 +21,9 @@ export function SocialBottomNav({ active }: { active: string }) {
       style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 0.3rem)" }}
     >
       <ul className="flex items-stretch justify-around px-1.5 pt-1.5">
-        {ITEMS.map(({ key, label, icon: Icon, to }) => {
+        {ITEMS.map(({ key, label, icon: Icon, to, badge }) => {
           const isActive = key === active;
+          const filled = isActive && (key === "conexiones" || key === "mensajes");
           const inner = (
             <span className="relative flex min-h-[46px] flex-col items-center justify-center gap-1 px-2.5">
               {isActive && (
@@ -28,19 +35,33 @@ export function SocialBottomNav({ active }: { active: string }) {
                   }}
                 />
               )}
-              <Icon
-                className="size-[1.15rem]"
-                strokeWidth={isActive ? 2.2 : 1.7}
-                style={{
-                  color: isActive ? "var(--epic-violet-bright)" : "rgba(255,255,255,0.68)",
-                  filter: isActive
-                    ? "drop-shadow(0 0 8px color-mix(in oklab, var(--epic-violet) 80%, transparent))"
-                    : undefined,
-                }}
-              />
+              <span className="relative">
+                <Icon
+                  className="size-[1.15rem]"
+                  strokeWidth={isActive ? 2.2 : 1.65}
+                  fill={filled ? "currentColor" : "none"}
+                  style={{
+                    color: isActive ? "var(--epic-violet-bright)" : "rgba(255,255,255,0.52)",
+                    filter: isActive
+                      ? "drop-shadow(0 0 7px color-mix(in oklab, var(--epic-violet) 70%, transparent))"
+                      : undefined,
+                  }}
+                />
+                {badge && (
+                  <span
+                    className="absolute -right-1 -top-0.5 size-1.5 rounded-full"
+                    style={{
+                      background: "var(--social-pink)",
+                      boxShadow: "0 0 7px var(--social-pink)",
+                    }}
+                  />
+                )}
+              </span>
               <span
                 className="font-ui text-center text-[0.62rem] font-medium leading-none tracking-[0.01em]"
-                style={{ color: isActive ? "white" : "rgba(255,255,255,0.62)" }}
+                style={{
+                  color: isActive ? "var(--epic-violet-bright)" : "rgba(255,255,255,0.48)",
+                }}
               >
                 {label}
               </span>
@@ -48,13 +69,9 @@ export function SocialBottomNav({ active }: { active: string }) {
           );
           return (
             <li key={key}>
-              {to ? (
-                <Link to={to}>{inner}</Link>
-              ) : (
-                <button type="button" className="cursor-default">
-                  {inner}
-                </button>
-              )}
+              <Link to={to} className="cursor-pointer">
+                {inner}
+              </Link>
             </li>
           );
         })}

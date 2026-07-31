@@ -74,7 +74,7 @@ export function SocialProfileCard({
         style={{ background: "linear-gradient(to bottom, rgba(4,2,12,0.55), transparent)" }}
       />
 
-      <div className="absolute left-3.5 top-3.5 flex flex-wrap items-center gap-2.5">
+      <div className="absolute left-4 top-4 flex max-w-[calc(100%-2rem)] flex-wrap items-center gap-2">
         <span
           className="inline-flex items-center gap-1 rounded-full border px-2 py-0.5 font-ui text-[0.62rem] font-medium tracking-[0.02em] text-white/95 backdrop-blur"
           style={{

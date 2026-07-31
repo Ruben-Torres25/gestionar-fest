@@ -122,3 +122,9 @@ export const QUICK_ACCESS_META = {
   connections: 3,
   messages: 2,
 };
+
+/** Mock current guest profile for match overlays. */
+export const CURRENT_USER = {
+  name: "Rubén",
+  photo: p6,
+} as const;

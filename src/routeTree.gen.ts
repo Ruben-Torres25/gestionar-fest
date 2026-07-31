@@ -18,6 +18,10 @@ import { Route as MiEntradaRouteImport } from './routes/mi-entrada'
 import { Route as RegistroRouteImport } from './routes/registro'
 import { Route as SocialIndexRouteImport } from './routes/social.index'
 import { Route as SocialDescubrirRouteImport } from './routes/social.descubrir'
+import { Route as SocialMatchesRouteImport } from './routes/social.matches'
+import { Route as SocialMensajesRouteImport } from './routes/social.mensajes'
+import { Route as SocialMensajesIndexRouteImport } from './routes/social.mensajes.index'
+import { Route as SocialMensajesChatIdRouteImport } from './routes/social.mensajes.$chatId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -64,6 +68,26 @@ const SocialDescubrirRoute = SocialDescubrirRouteImport.update({
   path: '/social/descubrir',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SocialMatchesRoute = SocialMatchesRouteImport.update({
+  id: '/social/matches',
+  path: '/social/matches',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SocialMensajesRoute = SocialMensajesRouteImport.update({
+  id: '/social/mensajes',
+  path: '/social/mensajes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SocialMensajesIndexRoute = SocialMensajesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SocialMensajesRoute,
+} as any)
+const SocialMensajesChatIdRoute = SocialMensajesChatIdRouteImport.update({
+  id: '/$chatId',
+  path: '/$chatId',
+  getParentRoute: () => SocialMensajesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -74,7 +98,11 @@ export interface FileRoutesByFullPath {
   '/mi-entrada': typeof MiEntradaRoute
   '/registro': typeof RegistroRoute
   '/social/descubrir': typeof SocialDescubrirRoute
+  '/social/matches': typeof SocialMatchesRoute
+  '/social/mensajes': typeof SocialMensajesRouteWithChildren
   '/social/': typeof SocialIndexRoute
+  '/social/mensajes/$chatId': typeof SocialMensajesChatIdRoute
+  '/social/mensajes/': typeof SocialMensajesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -85,7 +113,10 @@ export interface FileRoutesByTo {
   '/mi-entrada': typeof MiEntradaRoute
   '/registro': typeof RegistroRoute
   '/social/descubrir': typeof SocialDescubrirRoute
+  '/social/matches': typeof SocialMatchesRoute
   '/social': typeof SocialIndexRoute
+  '/social/mensajes/$chatId': typeof SocialMensajesChatIdRoute
+  '/social/mensajes': typeof SocialMensajesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -97,7 +128,11 @@ export interface FileRoutesById {
   '/mi-entrada': typeof MiEntradaRoute
   '/registro': typeof RegistroRoute
   '/social/descubrir': typeof SocialDescubrirRoute
+  '/social/matches': typeof SocialMatchesRoute
+  '/social/mensajes': typeof SocialMensajesRouteWithChildren
   '/social/': typeof SocialIndexRoute
+  '/social/mensajes/$chatId': typeof SocialMensajesChatIdRoute
+  '/social/mensajes/': typeof SocialMensajesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -110,7 +145,11 @@ export interface FileRouteTypes {
     | '/mi-entrada'
     | '/registro'
     | '/social/descubrir'
+    | '/social/matches'
+    | '/social/mensajes'
     | '/social/'
+    | '/social/mensajes/$chatId'
+    | '/social/mensajes/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -121,7 +160,10 @@ export interface FileRouteTypes {
     | '/mi-entrada'
     | '/registro'
     | '/social/descubrir'
+    | '/social/matches'
     | '/social'
+    | '/social/mensajes/$chatId'
+    | '/social/mensajes'
   id:
     | '__root__'
     | '/'
@@ -132,7 +174,11 @@ export interface FileRouteTypes {
     | '/mi-entrada'
     | '/registro'
     | '/social/descubrir'
+    | '/social/matches'
+    | '/social/mensajes'
     | '/social/'
+    | '/social/mensajes/$chatId'
+    | '/social/mensajes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -144,6 +190,8 @@ export interface RootRouteChildren {
   MiEntradaRoute: typeof MiEntradaRoute
   RegistroRoute: typeof RegistroRoute
   SocialDescubrirRoute: typeof SocialDescubrirRoute
+  SocialMatchesRoute: typeof SocialMatchesRoute
+  SocialMensajesRoute: typeof SocialMensajesRouteWithChildren
   SocialIndexRoute: typeof SocialIndexRoute
 }
 
@@ -212,8 +260,50 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SocialDescubrirRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/social/matches': {
+      id: '/social/matches'
+      path: '/social/matches'
+      fullPath: '/social/matches'
+      preLoaderRoute: typeof SocialMatchesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/social/mensajes': {
+      id: '/social/mensajes'
+      path: '/social/mensajes'
+      fullPath: '/social/mensajes'
+      preLoaderRoute: typeof SocialMensajesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/social/mensajes/': {
+      id: '/social/mensajes/'
+      path: '/'
+      fullPath: '/social/mensajes/'
+      preLoaderRoute: typeof SocialMensajesIndexRouteImport
+      parentRoute: typeof SocialMensajesRoute
+    }
+    '/social/mensajes/$chatId': {
+      id: '/social/mensajes/$chatId'
+      path: '/$chatId'
+      fullPath: '/social/mensajes/$chatId'
+      preLoaderRoute: typeof SocialMensajesChatIdRouteImport
+      parentRoute: typeof SocialMensajesRoute
+    }
   }
 }
+
+interface SocialMensajesRouteChildren {
+  SocialMensajesChatIdRoute: typeof SocialMensajesChatIdRoute
+  SocialMensajesIndexRoute: typeof SocialMensajesIndexRoute
+}
+
+const SocialMensajesRouteChildren: SocialMensajesRouteChildren = {
+  SocialMensajesChatIdRoute: SocialMensajesChatIdRoute,
+  SocialMensajesIndexRoute: SocialMensajesIndexRoute,
+}
+
+const SocialMensajesRouteWithChildren = SocialMensajesRoute._addFileChildren(
+  SocialMensajesRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -224,6 +314,8 @@ const rootRouteChildren: RootRouteChildren = {
   MiEntradaRoute: MiEntradaRoute,
   RegistroRoute: RegistroRoute,
   SocialDescubrirRoute: SocialDescubrirRoute,
+  SocialMatchesRoute: SocialMatchesRoute,
+  SocialMensajesRoute: SocialMensajesRouteWithChildren,
   SocialIndexRoute: SocialIndexRoute,
 }
 export const routeTree = rootRouteImport

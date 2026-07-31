@@ -33,7 +33,12 @@ export function DiscoverPage() {
   };
 
   return (
-    <SocialLayout active="descubrir" noScroll>
+    <SocialLayout
+      active="descubrir"
+      noScroll
+      dimNav={!!connection}
+      overlay={<ConnectionOverlay profile={connection} onClose={() => setConnection(null)} />}
+    >
       <div className="flex h-full flex-col pb-3">
         <DiscoverHeader onFilters={() => setFilters(true)} />
 
@@ -66,7 +71,6 @@ export function DiscoverPage() {
       </div>
 
       <FilterSheet open={filters} onClose={() => setFilters(false)} />
-      <ConnectionOverlay profile={connection} onClose={() => setConnection(null)} />
     </SocialLayout>
   );
 }

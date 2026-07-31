@@ -5,10 +5,16 @@ export function SocialLayout({
   children,
   active,
   noScroll = false,
+  overlay = null,
+  dimNav = false,
+  hideNav = false,
 }: {
   children: ReactNode;
   active: "inicio" | "descubrir" | "conexiones" | "mensajes";
   noScroll?: boolean;
+  overlay?: ReactNode;
+  dimNav?: boolean;
+  hideNav?: boolean;
 }) {
   return (
     <div className="flex min-h-[100dvh] w-full justify-center bg-[#040208] font-ui">
@@ -23,13 +29,26 @@ export function SocialLayout({
         <div
           className={`no-scrollbar relative z-10 flex-1 ${noScroll ? "overflow-hidden" : "overflow-y-auto"}`}
           style={{
-            paddingTop: "calc(env(safe-area-inset-top) + 0.85rem)",
-            paddingBottom: noScroll ? undefined : "2rem",
+            paddingTop: hideNav ? undefined : "calc(env(safe-area-inset-top) + 0.85rem)",
+            paddingBottom: noScroll || hideNav ? undefined : "1.75rem",
           }}
         >
           {children}
         </div>
-        <SocialBottomNav active={active} />
+        {!hideNav && (
+          <div
+            className="relative z-20 transition-[opacity,filter] duration-300"
+            style={{
+              opacity: dimNav ? 0.28 : 1,
+              filter: dimNav ? "saturate(0.55)" : undefined,
+              pointerEvents: dimNav ? "none" : undefined,
+            }}
+            aria-hidden={dimNav || undefined}
+          >
+            <SocialBottomNav active={active} />
+          </div>
+        )}
+        {overlay}
       </div>
     </div>
   );

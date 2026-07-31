@@ -49,49 +49,40 @@ export function SocialQuickAccess() {
         </Link>
       </motion.div>
 
-      <SecondaryTile
-        icon={<Users className="size-[1.05rem]" style={{ color: "var(--social-blue)" }} />}
-        title="Hice match con.."
-        meta={`${QUICK_ACCESS_META.connections} nuevas`}
-        tone="var(--social-blue)"
-      />
-      <SecondaryTile
-        icon={<MessageCircle className="size-[1.05rem]" style={{ color: "var(--social-pink)" }} />}
-        title="Mensajes"
-        meta={`${QUICK_ACCESS_META.messages} sin leer`}
-        tone="var(--social-pink)"
-      />
+      <Link
+        to="/social/matches"
+        className="flex min-h-[62px] items-center gap-3 rounded-[1.15rem] border border-white/10 bg-white/[0.035] px-3 py-2.5 backdrop-blur transition-colors hover:bg-white/[0.05]"
+        style={{ boxShadow: "inset 0 0 24px -18px var(--social-blue)" }}
+      >
+        <span className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-black/25">
+          <Users className="size-[1.05rem]" style={{ color: "var(--social-blue)" }} />
+        </span>
+        <div className="min-w-0">
+          <p className="whitespace-normal text-[0.72rem] font-medium leading-snug text-white">
+            Hice match con..
+          </p>
+          <p className="truncate text-[0.68rem] font-light text-social-blue">
+            {QUICK_ACCESS_META.connections} nuevas
+          </p>
+        </div>
+      </Link>
+      <Link
+        to="/social/mensajes"
+        className="flex min-h-[62px] items-center gap-3 rounded-[1.15rem] border border-white/10 bg-white/[0.035] px-3 py-2.5 backdrop-blur transition-colors hover:bg-white/[0.05]"
+        style={{ boxShadow: "inset 0 0 24px -18px var(--social-pink)" }}
+      >
+        <span className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-black/25">
+          <MessageCircle className="size-[1.05rem]" style={{ color: "var(--social-pink)" }} />
+        </span>
+        <div className="min-w-0">
+          <p className="whitespace-normal text-[0.72rem] font-medium leading-snug text-white">
+            Mensajes
+          </p>
+          <p className="truncate text-[0.68rem] font-light" style={{ color: "var(--social-pink)" }}>
+            {QUICK_ACCESS_META.messages} sin leer
+          </p>
+        </div>
+      </Link>
     </motion.section>
-  );
-}
-
-function SecondaryTile({
-  icon,
-  title,
-  meta,
-  tone,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  meta: string;
-  tone: string;
-}) {
-  return (
-    <div
-      className="flex min-h-[62px] items-center gap-3 rounded-[1.15rem] border border-white/10 bg-white/[0.035] px-3 py-2.5 backdrop-blur"
-      style={{ boxShadow: `inset 0 0 24px -18px ${tone}` }}
-    >
-      <span className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-black/25">
-        {icon}
-      </span>
-      <div className="min-w-0">
-        <p className="text-[0.72rem] font-medium leading-snug text-white whitespace-normal">
-          {title}
-        </p>
-        <p className="truncate text-[0.68rem] font-light" style={{ color: tone }}>
-          {meta}
-        </p>
-      </div>
-    </div>
   );
 }
