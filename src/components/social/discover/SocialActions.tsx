@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Sparkles, X, Zap } from "lucide-react";
+import { Sparkles, X } from "lucide-react";
 
 export function SocialActions({
   onPass,
@@ -52,7 +52,7 @@ export function SocialActions({
           disabled={disabled}
           onClick={onHighlight}
           whileTap={{ scale: 0.95 }}
-          className="flex min-h-[50px] min-w-0 flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-[1rem] border px-2.5 font-ui text-[0.7rem] font-semibold uppercase tracking-[0.08em] backdrop-blur disabled:opacity-40"
+          className="flex min-h-[50px] min-w-0 flex-1 items-center justify-center gap-1.5 whitespace-nowrap rounded-[1rem] border px-2 font-ui text-[0.68rem] font-semibold uppercase tracking-[0.04em] backdrop-blur disabled:opacity-40 min-[390px]:px-2.5 min-[390px]:text-[0.7rem]"
           style={{
             borderColor: "color-mix(in oklab, var(--social-blue) 70%, transparent)",
             background:
@@ -61,8 +61,10 @@ export function SocialActions({
             color: "color-mix(in oklab, var(--social-blue) 25%, white)",
           }}
         >
-          <Zap className="size-3.5 shrink-0" style={{ color: "var(--social-blue)" }} />
-          Destacar
+          <span className="text-[0.95rem] leading-none" aria-hidden="true">
+            ❤️
+          </span>
+          Super Like
         </motion.button>
       </div>
     </div>

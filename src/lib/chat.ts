@@ -6,6 +6,8 @@ import p5 from "@/assets/social/p5.jpg";
 import p6 from "@/assets/social/p6.jpg";
 import type { MessageReceipt } from "@/lib/messages";
 import { INITIAL_MESSAGE_THREADS, INITIAL_PENDING_MATCHES } from "@/lib/messages";
+import { PROFILES } from "@/lib/social";
+import { NEW_MATCHES, PREVIOUS_MATCHES } from "@/lib/matches";
 
 export type ChatMessageSide = "incoming" | "outgoing";
 
@@ -172,6 +174,39 @@ export function getChatParticipant(chatId: string): ChatParticipant | null {
       name: fromPending.name,
       age: fromPending.age,
       photo: fromPending.photo,
+    };
+  }
+
+  const fromDiscover = PROFILES.find((p) => p.id === chatId);
+  if (fromDiscover) {
+    return {
+      id: fromDiscover.id,
+      name: fromDiscover.name,
+      age: fromDiscover.age,
+      photo: fromDiscover.photo,
+      online: true,
+    };
+  }
+
+  const fromNewMatch = NEW_MATCHES.find((m) => m.id === chatId);
+  if (fromNewMatch) {
+    return {
+      id: fromNewMatch.id,
+      name: fromNewMatch.name,
+      age: 24,
+      photo: fromNewMatch.photo,
+      online: fromNewMatch.online,
+    };
+  }
+
+  const fromPrevious = PREVIOUS_MATCHES.find((m) => m.id === chatId);
+  if (fromPrevious) {
+    return {
+      id: fromPrevious.id,
+      name: fromPrevious.name,
+      age: 24,
+      photo: fromPrevious.photo,
+      online: fromPrevious.online,
     };
   }
 

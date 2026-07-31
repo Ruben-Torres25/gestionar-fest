@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from "motion/react";
+import { useNavigate } from "@tanstack/react-router";
 import { MessageCircle, Zap } from "lucide-react";
 import type { NewMatch } from "@/lib/matches";
 
@@ -101,18 +102,22 @@ export function NewMatchCard({
           </div>
         </div>
 
-        <MessageCta />
+        <MessageCta chatId={match.id} />
       </div>
     </motion.article>
   );
 }
 
-function MessageCta() {
+function MessageCta({ chatId }: { chatId: string }) {
+  const navigate = useNavigate();
+
   return (
     <button
       type="button"
+      onClick={() => void navigate({ to: "/social/mensajes/$chatId", params: { chatId } })}
       className="min-h-11 min-w-[6.75rem] shrink-0 cursor-pointer rounded-full px-3 font-ui text-[0.66rem] font-semibold text-white transition-[filter,transform] duration-200 hover:brightness-110 active:scale-[0.97] sm:min-w-[7.25rem]"
       style={{
+        touchAction: "manipulation",
         background:
           "linear-gradient(100deg, var(--social-blue) 0%, color-mix(in oklab, var(--social-blue) 30%, var(--epic-violet)) 48%, var(--epic-violet-bright))",
         boxShadow:

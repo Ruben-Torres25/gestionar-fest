@@ -1,4 +1,5 @@
 import { motion, useReducedMotion } from "motion/react";
+import { useNavigate } from "@tanstack/react-router";
 import { ChevronRight } from "lucide-react";
 import type { PreviousMatch } from "@/lib/matches";
 
@@ -15,6 +16,7 @@ export function PreviousMatchRow({
   index: number;
 }) {
   const reduced = useReducedMotion();
+  const navigate = useNavigate();
   const ring = RING[match.ring];
 
   return (
@@ -24,7 +26,11 @@ export function PreviousMatchRow({
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.26 + index * 0.04, duration: 0.28 }}
       whileTap={{ scale: 0.985 }}
+      onClick={() =>
+        void navigate({ to: "/social/mensajes/$chatId", params: { chatId: match.id } })
+      }
       className="grid w-full min-h-[3.5rem] cursor-pointer grid-cols-[auto_minmax(0,1fr)_4.5rem] items-center gap-x-3 rounded-xl px-0.5 py-3 text-left transition-colors duration-200 hover:bg-white/[0.025] active:bg-white/[0.04]"
+      style={{ touchAction: "manipulation" }}
     >
       <div className="relative shrink-0">
         <img

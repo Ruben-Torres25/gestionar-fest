@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "motion/react";
+import { useNavigate } from "@tanstack/react-router";
 import { MessageCircle } from "lucide-react";
 import { CURRENT_USER, type SocialProfile } from "@/lib/social";
 import { GA_SOCIAL_LOCKUP } from "@/lib/ga-assets";
@@ -11,6 +12,15 @@ export function ConnectionOverlay({
   profile: SocialProfile | null;
   onClose: () => void;
 }) {
+  const navigate = useNavigate();
+
+  const goToChat = () => {
+    if (!profile) return;
+    const chatId = profile.id;
+    onClose();
+    void navigate({ to: "/social/mensajes/$chatId", params: { chatId } });
+  };
+
   return (
     <AnimatePresence>
       {profile && (
@@ -103,9 +113,10 @@ export function ConnectionOverlay({
             >
               <button
                 type="button"
-                onClick={onClose}
-                className="flex min-h-[54px] w-full items-center justify-center gap-2 rounded-[1.1rem] font-ui text-[0.92rem] font-semibold text-white"
+                onClick={goToChat}
+                className="flex min-h-[54px] w-full cursor-pointer items-center justify-center gap-2 rounded-[1.1rem] font-ui text-[0.92rem] font-semibold text-white"
                 style={{
+                  touchAction: "manipulation",
                   background:
                     "linear-gradient(100deg, var(--social-blue) 0%, color-mix(in oklab, var(--social-blue) 35%, var(--epic-violet)) 48%, var(--epic-violet-bright))",
                   boxShadow:
@@ -118,7 +129,8 @@ export function ConnectionOverlay({
               <button
                 type="button"
                 onClick={onClose}
-                className="flex min-h-[50px] w-full items-center justify-center rounded-[1.1rem] border border-white/14 bg-white/[0.04] font-ui text-[0.88rem] font-medium text-white/78"
+                className="flex min-h-[50px] w-full cursor-pointer items-center justify-center rounded-[1.1rem] border border-white/14 bg-white/[0.04] font-ui text-[0.88rem] font-medium text-white/78"
+                style={{ touchAction: "manipulation" }}
               >
                 Seguir viendo gente
               </button>
