@@ -361,14 +361,14 @@
     border-radius: 9999px;
     background: linear-gradient(95deg, #095efa 0%, #2f8fff 40%, #50df74 100%);
     box-shadow:
-      0 0 7px rgba(47, 143, 255, 0.14),
-      0 0 10px rgba(80, 223, 116, 0.1);
+      0 0 5px rgba(47, 143, 255, 0.12),
+      0 0 8px rgba(80, 223, 116, 0.08);
   }
 
   .ga-nav-active__inner {
     background:
-      radial-gradient(ellipse 70% 140% at 18% 50%, rgba(47, 143, 255, 0.18), transparent 58%),
-      radial-gradient(ellipse 85% 150% at 78% 55%, rgba(80, 223, 116, 0.2), transparent 62%),
+      radial-gradient(ellipse 70% 140% at 18% 50%, rgba(47, 143, 255, 0.16), transparent 58%),
+      radial-gradient(ellipse 85% 150% at 78% 55%, rgba(80, 223, 116, 0.16), transparent 62%),
       linear-gradient(90deg, #0b1420 0%, #0c1716 50%, #0a1512 100%);
   }
 
