@@ -4,6 +4,7 @@ import { TIER_STYLE, type SocialProfile } from "@/lib/social";
 import { VibeTags } from "./VibeTags";
 import { ProfileAura } from "./ProfileAura";
 import { SwipeOverlay } from "./SwipeOverlay";
+import { AffinityPulse } from "./AffinityPulse";
 
 export function SocialProfileCard({
   profile,
@@ -17,35 +18,37 @@ export function SocialProfileCard({
   onDecision?: (dir: "like" | "pass") => void;
 }) {
   const x = useMotionValue(0);
-  const rotate = useTransform(x, [-200, 200], [-7, 7]);
+  const rotate = useTransform(x, [-220, 220], [-5, 5]);
   const tone = TIER_STYLE[profile.tier].color;
 
   return (
     <motion.article
-      className="absolute inset-0 overflow-hidden rounded-[1.75rem] border bg-black"
+      className="absolute inset-0 overflow-hidden rounded-[1.85rem] border bg-black"
       style={{
         x: interactive ? x : 0,
         rotate: interactive ? rotate : 0,
-        borderColor: `color-mix(in oklab, ${tone} 45%, transparent)`,
-        boxShadow: `0 24px 60px -24px color-mix(in oklab, ${tone} 85%, transparent)`,
+        borderColor: `color-mix(in oklab, ${tone} 38%, rgba(255,255,255,0.12))`,
+        boxShadow: `0 28px 64px -30px color-mix(in oklab, ${tone} 85%, transparent), inset 0 1px 0 rgba(255,255,255,0.12)`,
         zIndex: 10 - depth,
         touchAction: interactive ? "pan-y" : undefined,
       }}
-      initial={{ scale: 0.94 - depth * 0.04, y: depth * 14, opacity: depth > 1 ? 0 : 1 }}
-      animate={{ scale: 1 - depth * 0.05, y: depth * 14, opacity: depth > 1 ? 0 : 1 }}
+      initial={{ scale: 0.94 - depth * 0.04, y: depth * 12, opacity: depth > 1 ? 0 : 1 }}
+      animate={{ scale: 1 - depth * 0.045, y: depth * 12, opacity: depth > 1 ? 0 : 1 }}
       exit={{
-        x: x.get() > 0 ? 420 : -420,
+        x: x.get() > 0 ? 460 : -460,
         opacity: 0,
-        transition: { duration: 0.32, ease: "easeIn" },
+        transition: { duration: 0.3, ease: "easeIn" },
       }}
-      transition={{ type: "spring", stiffness: 260, damping: 28 }}
+      transition={{ type: "spring", stiffness: 240, damping: 30 }}
       drag={interactive ? "x" : false}
       dragConstraints={{ left: 0, right: 0 }}
-      dragElastic={0.6}
+      dragElastic={0.55}
+      dragTransition={{ bounceStiffness: 320, bounceDamping: 34 }}
       onDragEnd={(_, info) => {
         if (!interactive || !onDecision) return;
-        if (info.offset.x > 110) onDecision("like");
-        else if (info.offset.x < -110) onDecision("pass");
+        const power = info.offset.x + info.velocity.x * 0.12;
+        if (power > 120) onDecision("like");
+        else if (power < -120) onDecision("pass");
       }}
     >
       {depth === 0 && <ProfileAura tone={tone} />}
@@ -63,17 +66,21 @@ export function SocialProfileCard({
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to top, rgba(3,2,10,0.96) 8%, rgba(3,2,10,0.55) 38%, transparent 62%)",
+            "linear-gradient(to top, rgba(4,2,12,0.97) 4%, rgba(4,2,12,0.82) 24%, rgba(4,2,12,0.28) 48%, transparent 66%)",
         }}
+      />
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-28"
+        style={{ background: "linear-gradient(to bottom, rgba(4,2,12,0.6), transparent)" }}
       />
 
       <div className="absolute left-4 top-4 flex flex-wrap items-center gap-2">
         <span
-          className="inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.16em] text-white backdrop-blur"
+          className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-display text-[0.6rem] uppercase tracking-[0.18em] text-white backdrop-blur"
           style={{
             borderColor: tone,
-            background: `color-mix(in oklab, ${tone} 25%, transparent)`,
-            boxShadow: `0 0 18px -6px ${tone}`,
+            background: `color-mix(in oklab, ${tone} 22%, rgba(0,0,0,0.35))`,
+            boxShadow: `0 0 20px -8px ${tone}`,
           }}
         >
           <Ticket className="size-3" />
@@ -81,10 +88,10 @@ export function SocialProfileCard({
         </span>
         {profile.verified && (
           <span
-            className="inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[0.62rem] text-white/90 backdrop-blur"
+            className="inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-[0.62rem] font-light text-white/90 backdrop-blur"
             style={{
-              borderColor: "color-mix(in oklab, var(--gestionar-green) 60%, transparent)",
-              background: "color-mix(in oklab, var(--gestionar-green) 16%, transparent)",
+              borderColor: "color-mix(in oklab, var(--gestionar-green) 55%, transparent)",
+              background: "color-mix(in oklab, var(--gestionar-green) 14%, rgba(0,0,0,0.3))",
             }}
           >
             <BadgeCheck className="size-3.5" style={{ color: "var(--gestionar-green)" }} />
@@ -94,20 +101,18 @@ export function SocialProfileCard({
       </div>
 
       <div className="absolute inset-x-0 bottom-0 p-5">
-        <h3 className="font-display text-3xl uppercase leading-none text-white">
-          {profile.name} <span className="text-white/60">{profile.age}</span>
+        <h3 className="font-display text-[2rem] uppercase leading-none text-white">
+          {profile.name} <span className="text-white/55">{profile.age}</span>
         </h3>
-        <p className="mt-2 text-sm leading-snug text-white/75">“{profile.phrase}”</p>
-        <div className="mt-3">
+        <p className="mt-3 max-w-[32ch] text-[0.85rem] font-light leading-6 text-white/80">
+          “{profile.phrase}”
+        </p>
+        <div className="mt-3.5">
           <VibeTags tags={profile.tags} />
         </div>
-        <p
-          className="mt-3 inline-flex items-center gap-2 text-[0.68rem] uppercase tracking-[0.16em]"
-          style={{ color: "var(--epic-violet-bright)" }}
-        >
-          <span className="inline-block h-px w-6" style={{ background: tone }} />
-          {profile.affinity}
-        </p>
+        <div className="mt-4">
+          <AffinityPulse label={profile.affinity} tone={tone} />
+        </div>
       </div>
 
       {interactive && <SwipeOverlay x={x} />}
